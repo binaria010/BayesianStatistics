@@ -26,6 +26,7 @@ The algorithm follows the steps:
 5. Repeat steps 2 and 3 "sufficiently enough".
 
 where 
+
 ```math
     \rho(x,y) = \min\left\{\frac{p(y)}{p(x)}\frac{q(x|y)}{q(y|x)}, 1 \right\}
 ```
