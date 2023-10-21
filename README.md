@@ -1,16 +1,28 @@
-<script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            extensions: ["tex2jax.js"],
-            jax: ["input/TeX", "output/HTML-CSS"],
-            tex2jax: {
-                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-                processEscapes: true
-            },
-"HTML-CSS": { availableFonts: ["TeX"] }
-})
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Introduction to Probability and statistics</title>
+        <!-- for latex notation-->
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+          </script>
+          <script type="text/javascript"
+            src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        <style>
+            body {
+                font-family:serif;
+            }
+        </style>
 
-# Metropolis-Hastings (MH) algorithms
+        <link rel="stylesheet" href="header-basic.css">
+    </head>
+
+
+<h1></h1> Metropolis-Hastings (MH) algorithms </h1>
 
 These algorithms are a series of procedures that help us to draw samples from a target distributions which is known up to a normalizing constant. This type of problems present when dealing with *Bayesian inference*, where the posterior distribution is not fully known because the integration to compute the normalizing constant has to be solved numerically.
 
