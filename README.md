@@ -35,7 +35,8 @@ The algorithm follows the steps:
 $$
        X_1 = \begin{cases}
         & Y_0 \qquad \text{with probaility } \rho(x_0, Y_0)\\
-        & x_0 \qquad \text{with probaility } 1 - \rho(x_0, Y_0)\end{cases}
+        & x_0 \qquad \text{with probaility } 1 - \rho(x_0, Y_0)
+   \end{cases}
 $$
 5. Repeat steps 2 and 3 "sufficiently enough".
 
