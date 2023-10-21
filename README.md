@@ -28,20 +28,22 @@ The idea behind the MH algorithms is the following: Given the target density $p$
 The algorithm follows the steps:
 
 1. Initialize a value $x_0$ (first sample)
+
 2. Generate a value from a random variable $Y_0$ with distribution $q(y|x_0)$
+   
 3. Define
-```math
+$$
        X_1 = \begin{cases}
         & Y_0 \qquad \text{with probaility } \rho(x_0, Y_0)\\
         & x_0 \qquad \text{with probaility } 1 - \rho(x_0, Y_0)\end{cases}
-```
+$$
 5. Repeat steps 2 and 3 "sufficiently enough".
 
 where 
 
-```math
-    \rho(x,y) = \min\left\{\frac{p(y)}{p(x)}\frac{q(x|y)}{q(y|x)}, 1 \right\}
-```
+$$
+\rho(x,y) = \min\left\{\frac{p(y)}{p(x)}\frac{q(x|y)}{q(y|x)}, 1 \right\}
+$$
 
 Repetition of steps 2 and 3 will define a sequence of random variables $X_t$ such that $X_0 = x_0$ with probability 1. This sequence is a Markov process. The prove of this fact will be done later in this notebook.
 
