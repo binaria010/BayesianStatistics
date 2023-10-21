@@ -16,8 +16,6 @@ The algorithm follows the steps:
 1. Initialize a value $x_0$ (first sample)
 2. Generate a value from a random variable $Y_0$ with distribution $q(y|x_0)$
 3. Define
-
-    
 ```math
        X_1 = \begin{cases}
         & Y_0 \qquad \text{with probaility } \rho(x_0, Y_0)\\
