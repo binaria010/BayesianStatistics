@@ -187,7 +187,9 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_12_0.png)
+
+
+<img src="MetropolisHastingsAlg_files/MetropolisHastingsAlg_12_0.png" />
     
 
 
