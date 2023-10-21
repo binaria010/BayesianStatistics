@@ -8,7 +8,7 @@
                 processEscapes: true
             },
 "HTML-CSS": { availableFonts: ["TeX"] }
-
+})
 
 # Metropolis-Hastings (MH) algorithms
 
