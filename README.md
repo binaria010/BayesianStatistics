@@ -1,26 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-    
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Introduction to Probability and statistics</title>
-        <!-- for latex notation-->
-        <script type="text/x-mathjax-config">
-            MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-          </script>
-          <script type="text/javascript"
-            src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
-        <style>
-            body {
-                font-family:serif;
-            }
-        </style>
-
-        <link rel="stylesheet" href="header-basic.css">
-    </head>
-
 
 <h1></h1> Metropolis-Hastings (MH) algorithms </h1>
 
