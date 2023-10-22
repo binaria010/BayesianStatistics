@@ -1,3 +1,21 @@
+<head>
+       <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+       <script type="text/x-mathjax-config">
+         MathJax.Hub.Config({
+           tex2jax: {
+             inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+              processEscapes: true
+           }
+         });
+       </script>
+       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+       <meta name="google-site-verification" content="kuks5e4as6qBaGVCSzmHkQJa5Tss89_g5DmRXeUi7K8" />
+  </head>
+
+
+
+
 <h1> Hypothesis Testing </h1>
 
 Let us consider the problem of testing the hypontesis on the probability of heads o a given coin. We are given the information that the coin gives 25 heads out of 100 tosses. We want to draw a new experiment with this coin to test the given information.
