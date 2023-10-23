@@ -31,7 +31,7 @@ The idea behind the MH algorithms is the following: Given the target density $p$
 The algorithm follows the steps:
 
 1. Initialize a value $x_0$ (first sample)
-2. Generate a value from a random variable $Y_0$ with distribution $q(y\|x_0)$
+2. Generate a value from a random variable $Y_0$ with distribution $q(y|x_{0})$
 3. Define
 
     $$
