@@ -148,7 +148,7 @@ acceptance_ratio
 
 
 
-    0.481
+    0.456
 
 
 
@@ -161,7 +161,7 @@ plt.plot(np.linspace(0, num_iter, num_iter), X)
 
 
 
-    [<matplotlib.lines.Line2D at 0x132e1a1a0>]
+    [<matplotlib.lines.Line2D at 0x1378752d0>]
 
 
 
@@ -377,33 +377,33 @@ df
     <tr>
       <th>0</th>
       <td>100</td>
-      <td>0.26064</td>
+      <td>0.296074</td>
       <td>0.3</td>
-      <td>0.009682</td>
+      <td>0.028487</td>
       <td>0.021</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1000</td>
-      <td>0.305621</td>
+      <td>0.321668</td>
       <td>0.3</td>
-      <td>0.021758</td>
+      <td>0.021139</td>
       <td>0.021</td>
     </tr>
     <tr>
       <th>2</th>
       <td>10000</td>
-      <td>0.301142</td>
+      <td>0.302469</td>
       <td>0.3</td>
-      <td>0.021278</td>
+      <td>0.021061</td>
       <td>0.021</td>
     </tr>
     <tr>
       <th>3</th>
       <td>100000</td>
-      <td>0.29966</td>
+      <td>0.299777</td>
       <td>0.3</td>
-      <td>0.021101</td>
+      <td>0.021025</td>
       <td>0.021</td>
     </tr>
   </tbody>
@@ -437,18 +437,12 @@ B = scipy.stats.beta.rvs(a = a, b = b, size = num_samples)
 ```python
 sns.histplot(X)
 sns.histplot(B)
+plt.show()
 ```
 
 
-
-
-    <Axes: ylabel='Count'>
-
-
-
-
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_23_1.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_23_0.png)
     
 
 
@@ -462,7 +456,7 @@ scipy.stats.kstest(X, scipy.stats.beta.cdf, (a, b))
 
 
 
-    KstestResult(statistic=0.020668312493017704, pvalue=0.7783082331926272, statistic_location=0.5154210965936256, statistic_sign=1)
+    KstestResult(statistic=0.03126582641560305, pvalue=0.2765260242534817, statistic_location=0.3033863188261565, statistic_sign=1)
 
 
 
@@ -475,7 +469,7 @@ scipy.stats.kstest(X, B)
 
 
 
-    KstestResult(statistic=0.031, pvalue=0.7228251828701066, statistic_location=0.20256883733821787, statistic_sign=-1)
+    KstestResult(statistic=0.043, pvalue=0.3136800387320582, statistic_location=0.3283607597347612, statistic_sign=1)
 
 
 
@@ -499,6 +493,19 @@ sns.histplot(X, bins = 100)
 ```
 
 
+
+
+    <Axes: ylabel='Count'>
+
+
+
+
+    
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_28_1.png)
+    
+
+
+
 ```python
 n = 10**3
 target = lambda x: (np.cos(50*x) + np.sin(20*x))**2
@@ -508,6 +515,12 @@ plt.plot(grid, target(grid))
 plt.title("function to be optimized")
 plt.show()
 ```
+
+
+    
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_29_0.png)
+    
+
 
 
 ```python
@@ -533,6 +546,12 @@ plt.subplot(122)
 plt.hist(estimated_argmax, bins=100)
 plt.show()
 ```
+
+
+    
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_31_0.png)
+    
+
 
 
 ```python
