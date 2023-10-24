@@ -584,4 +584,9 @@ t_q_prior
 
     0.002250065181322294
 
+<a href="index" class="previous">&laquo; Previous</a>
+<a href="Metropolis-Hastings" class="next">Next &raquo;</a>
+
+
+
 
