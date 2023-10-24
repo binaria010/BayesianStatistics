@@ -13,11 +13,7 @@
        <meta name="google-site-verification" content="kuks5e4as6qBaGVCSzmHkQJa5Tss89_g5DmRXeUi7K8" />
   </head>
 
-
-
-  
-  <body>
-    <h1>Bayesian Statistics: a Crash Course</h1>
+<h1>Bayesian Statistics: a Crash Course </h1>
 <article>
 
 <header>
@@ -53,12 +49,9 @@
       p(\theta|y) = \frac{p(y|\theta) p(\theta)}{\int_{\theta \in \Theta}p(y|\theta) p(\theta)\,d\theta}
     $$
 
-    where the integral in the denominator is a normalizing constant in order for $p(\theta|y)$ to be a probability distribution.
+where the integral in the denominator is a normalizing constant in order for $p(\theta|y)$ to be a probability distribution.
   
   </p>
 
-
-
  <a href="HypothesisTest" class="previous">Next &raquo;</a>
 
-  </body>
