@@ -52,6 +52,14 @@
 where the integral in the denominator is a normalizing constant in order for $p(\theta|y)$ to be a probability distribution.
   
   </p>
+  To illustrate better let us consider the following example:
+  
+  <h3> Example </h3>Sample survey: Suppose we are going to sample $n=100$ individuals from a county (of size much larger than $n$) and ask each sampled person whether they support policy Z or not. Let $Y_i = 1$ if person i in the sample supports the policy, and $Y_i = 0$ otherwise.
+
+  Assume that $Y_1, \dots, Y_{n}$ are, conditional on $theta$, identical and independent random variables each of distribution $Ber(\theta)$. Then the joint distribution conditional on $\theta$ is:
+  $$
+       p(y_1,\dots, y_n \|\theta) = \prod_{i=1}^n\theta^{y_i}(1-\theta)^{1-\theta_i} = \theta^{\sum_{i}y_i}(1-\theta)^{n-\sum_{i}y_i}
+  $$
 
  <a href="HypothesisTest" class="previous">Next &raquo;</a>
 
