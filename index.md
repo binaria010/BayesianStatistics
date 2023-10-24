@@ -55,3 +55,5 @@ where the integral in the denominator is a normalizing constant in order for $p(
 
  <a href="HypothesisTest" class="previous">Next &raquo;</a>
 
+ </article>
+
