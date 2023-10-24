@@ -59,6 +59,6 @@
 
 
 
- <a href="HyporthesisTest" class="previous"> &laquo; Next</a>
+ <a href="HyporthesisTest" class="previous">Next &raquo;</a>
 
   </body>
