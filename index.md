@@ -61,6 +61,9 @@ where the integral in the denominator is a normalizing constant in order for $p(
        p(y_1,\dots, y_n \|\theta) = \prod_{i=1}^n\theta^{y_i}(1-\theta)^{1-\theta_i} = \theta^{\sum_{i}y_i}(1-\theta)^{n-\sum_{i}y_i}
   $$
 
+  For the moment assume that your believe on $\theta$ is that $\theta \in\{0, 0.1, 0.2, \dots, 0.9, 1 \}$. Given that the results of the survey are: $\sum_{i=1}^n y_i = 57$,let us compute for each value of $\theta$, $\mathbb{P}(\sum_i Y_i = 57 \|\theta)$ and plot these results as a function of $\theta$:
+  
+
  <a href="HypothesisTest" class="previous">Next &raquo;</a>
 
  </article>
