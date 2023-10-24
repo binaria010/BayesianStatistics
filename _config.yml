@@ -4,5 +4,6 @@ relative_links:
   enabled: true
   collections: true
 include:
+  - index.md
   - Metropolis-Hastings.md
   - HypothesisTest.md
