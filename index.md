@@ -18,30 +18,29 @@
   
   <body>
     <h1>Bayesian Statistics: a Crash Course</h1>
+<article>
 
-    <article>
-
-            <header>
-                
-                <h2>Table of contents</h2>
-                <nav>
-                    <ol>
-                        <li><a href="#introbayesian"> Introduction to Bayesian Inference  </a></li>
-                        <li>Frequentist Approach </li>
-                            <ul> 
-                              <li> <a href = "HypothesisTest">  Hypothesis Test</a> </li>
-                            </ul>
-                        <li> Bayesian Approach</li>
-                            <ul>
-                              <li><a href="ConjugateDistributions">Conjugate Distributions</a></li>
-                            <li> Algorithms and Simulations</li>
-                                <ol>
-                                  <li><a href = "Metropolis-Hastings"> Metropolis Hastings Algorithm </a></li>
-                                </ol>
-                            </ul>
-                    </ol>
-                </nav>
-            </header>
+<header>
+  
+  <h2>Table of contents</h2>
+  <nav>
+      <ol>
+          <li><a href="#introbayesian"> Introduction to Bayesian Inference  </a></li>
+          <li>Frequentist Approach </li>
+              <ul> 
+                <li> <a href = "HypothesisTest">  Hypothesis Test</a> </li>
+              </ul>
+          <li> Bayesian Approach</li>
+              <ul>
+                <li><a href="ConjugateDistributions">Conjugate Distributions</a></li>
+              <li> Algorithms and Simulations</li>
+                  <ol>
+                    <li><a href = "Metropolis-Hastings"> Metropolis Hastings Algorithm </a></li>
+                  </ol>
+              </ul>
+      </ol>
+  </nav>
+</header>
 
   <h2 id = "introbayesian">Introduction to Bayesian Inference  </h2>
       <p>
@@ -57,5 +56,9 @@
     where the integral in the denominator is a normalizing constant in order for $p(\theta|y)$ to be a probability distribution.
   
   </p>
-    
+
+
+
+ <a href="HyporthesisTest" class="previous"> &laquo; Next</a>
+
   </body>
