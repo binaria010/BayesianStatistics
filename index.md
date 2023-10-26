@@ -138,7 +138,7 @@ thetas
 
 the likelihood attains its maximum for $\theta = 0.6$
 
-It can be shown that for $\theta \in [0,1]$, at $\theta^{*}= \frac{57}{100}$ the function $\mathbb{P}(\sum_i Y_i = 57 \vert\theta)$ attains its maximum value, this solution is called the *maximum likelihood estimate* of $\theta$ for the given sample.
+It can be shown that for $\theta \in[0,1]$, at $\theta^{*}= \frac{57}{100}$ the function $\mathbb{P}(\sum_i Y_i = 57\vert\theta)$ attains its maximum value, this solution is called the *maximum likelihood estimate* of $\theta$ for the given sample.
 
 This estimator is found using the frequentist approach to estimation. In this case, we consider $\theta$ to be an unknown but deterministic quantity.
 
@@ -153,7 +153,7 @@ $$
 Using this prior distribution and the likelihood of the data $\mathbb{P}(\sum_i Y_i = 57|\theta)$ we compute, via Bayes Rule,  the posterior distribution of $\theta$:
 
 $$
-p(\theta|\sum_i Y_i = 57) = \frac{\mathbb{P}(\sum_i Y_i = 57|\theta) p(\theta)}{\sum_{\theta}\mathbb{P}(\sum_i Y_i = 57|\theta) p(\theta)}=\frac{\mathbb{P}(\sum_i Y_i = 57|\theta)}{\sum_{\theta}\mathbb{P}(\sum_i Y_i = 57|\theta)}
+p(\theta\vert\sum_i Y_i = 57) = \frac{\mathbb{P}(\sum_i Y_i = 57\vert \theta) p(\theta)}{\sum_{\theta}\mathbb{P}(\sum_i Y_i = 57|\theta) p(\theta)}=\frac{\mathbb{P}(\sum_i Y_i = 57|\theta)}{\sum_{\theta}\mathbb{P}(\sum_i Y_i = 57|\theta)}
 $$
 
 and we plot this expression as a function of $\theta$:
@@ -198,13 +198,13 @@ $$
 Then we will plot the posterior distribution of $\theta$, which is:
 
 $$
-p(\theta\|\sum_i Y_i = 57) = \frac{\mathbb{P}(\sum_i Y_i = 57\|\theta) p(\theta)}{\displaystyle\int_{\theta}\mathbb{P}(\sum_i Y_i = 57\|\theta) p(\theta)\, d\theta}
+p(\theta\vert \sum_i Y_i = 57) = \frac{\mathbb{P}(\sum_i Y_i = 57\vert \theta) p(\theta)}{\displaystyle\int_{\theta}\mathbb{P}(\sum_i Y_i = 57\vert\theta) p(\theta)\, d\theta}
 $$
 
 Note firs that the denominator in the last expression is just a normalizing constant, so in order to avoid computing this constant, we will plot only the function
 
 $$
-\mathbb{P}(\sum_i Y_i = 57\|\theta) p(\theta)
+\mathbb{P}(\sum_i Y_i = 57\vert \theta) p(\theta)
 $$
 on the interval $[0,1]$:
 
