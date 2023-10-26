@@ -241,7 +241,7 @@ plt.show()
     
 
 
-We will see after that when the prior for $\theta$ is a uniform distribution in $[0,1]$ and the data is, conditional on $\theta$, Binomial the posterior of $\theta$ is a Beta distribution. Even more, since a uniform distribution can be seen as a Beta distribution, this result is true for a Beta distribution as a prior. 
+We will see later that when the prior for $\theta$ is a uniform distribution in $[0,1]$ and the data is, conditional on $\theta$, Binomial the posterior of $\theta$ is a Beta distribution. Even more, since a uniform distribution can be seen as a Beta distribution, this result is true for a Beta distribution as a prior. 
 When the prior and the posterior belong to the same family of distributions, it is said that the distribution of the data and the posterior distribution are *conjugate* distributions. In this example we say that Binomial and Beta distributions are conjugate.
 
  <a href="ConjugateDist" class="previous">Next &raquo;</a>
