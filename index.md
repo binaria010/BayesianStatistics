@@ -63,10 +63,10 @@ Sample survey: Suppose we are going to sample $n=100$ individuals from a county 
 Assume that $Y_1, \dots, Y_{n}$ are, conditional on $\theta$, identically distributed and independent random variables each of distribution $Ber(\theta)$. Then the joint distribution conditional on $\theta$ is:
 
 $$
-  p(y_1,\dots, y_n \|\theta) = \prod_{i=1}^n\theta^{y_i}(1-\theta)^{1-\theta_i} = \theta^{\sum_{i}y_i}(1-\theta)^{n-\sum_{i}y_i}
+  p(y_1,\dots, y_n |\theta) = \prod_{i=1}^n\theta^{y_i}(1-\theta)^{1-\theta_i} = \theta^{\sum_{i}y_i}(1-\theta)^{n-\sum_{i}y_i}
 $$
 
-For the moment assume that your believe on $\theta$ is that $\theta \in\{0, 0.1, 0.2, \dots, 0.9, 1 \}$. Given that the results of the survey are: $\sum_{i=1}^n y_i = 57$,let us compute for each value of $\theta$, $\mathbb{P}(\sum_i Y_i = 57 \|\theta)$ and plot these results as a function of $\theta$:
+For the moment assume that your believe on $\theta$ is that $\theta \in\{0, 0.1, 0.2, \dots, 0.9, 1 \}$. Given that the results of the survey are: $\sum_{i=1}^n y_i = 57$,let us compute for each value of $\theta$, $\mathbb{P}(\sum_i Y_i = 57 |\theta)$ and plot these results as a function of $\theta$:
 
 
 
@@ -135,7 +135,7 @@ thetas
 
 the likelihood attains its maximum for $\theta = 0.6$
 
-It can be shown that for $\theta \in [0,1]$, at $\theta^{*}= \frac{57}{100}$ the function $\mathbb{P}(\sum_i Y_i = 57\|\theta)$ attains its maximum value, this solution is called the *maximum likelihood estimate* of $\theta$ for the given sample.
+It can be shown that for $\theta \in [0,1]$, at $\theta^{*}= \frac{57}{100}$ the function $\mathbb{P}(\sum_i Y_i = 57|\theta)$ attains its maximum value, this solution is called the *maximum likelihood estimate* of $\theta$ for the given sample.
 
 This estimator is found using the frequentist approach to estimation. In this case, we consider $\theta$ to be an unknown but deterministic quantity.
 
@@ -147,10 +147,10 @@ $$
 p(\theta = k) =\frac{1}{11} \text{ for } k\in \{0, 0.1, 0.2, \dots, 0.9, 1.0\}
 $$
 
-Using this prior distribution and the likelihood of the data $\mathbb{P}(\sum_i Y_i = 57\|\theta)$ we compute, via Bayes Rule,  the posterior distribution of $\theta$:
+Using this prior distribution and the likelihood of the data $\mathbb{P}(\sum_i Y_i = 57|\theta)$ we compute, via Bayes Rule,  the posterior distribution of $\theta$:
 
 $$
-p(\theta\|\sum_i Y_i = 57) = \frac{\mathbb{P}(\sum_i Y_i = 57\|\theta) p(\theta)}{\sum_{\theta}\mathbb{P}(\sum_i Y_i = 57\|\theta) p(\theta)}=\frac{\mathbb{P}(\sum_i Y_i = 57\|\theta)}{\sum_{\theta}\mathbb{P}(\sum_i Y_i = 57\|\theta)}
+p(\theta|\sum_i Y_i = 57) = \frac{\mathbb{P}(\sum_i Y_i = 57|\theta) p(\theta)}{\sum_{\theta}\mathbb{P}(\sum_i Y_i = 57|\theta) p(\theta)}=\frac{\mathbb{P}(\sum_i Y_i = 57|\theta)}{\sum_{\theta}\mathbb{P}(\sum_i Y_i = 57|\theta)}
 $$
 
 and we plot this expression as a function of $\theta$:
@@ -175,7 +175,7 @@ plt.show()
     
 
 
-the value of $\theta\in\{0., 0.1, \dots, 0.9, 1.0\}$ for which the posterior $p(\theta\|\sum_i Y_i = 57)$ attains its maximum is: 
+the value of $\theta\in\{0., 0.1, \dots, 0.9, 1.0\}$ for which the posterior $p(\theta|\sum_i Y_i = 57)$ attains its maximum is: 
 
 
 ```python
@@ -195,13 +195,13 @@ $$
 Then we will plot the posterior distribution of $\theta$, which is:
 
 $$
-p(\theta\|\sum_i Y_i = 57) = \frac{\mathbb{P}(\sum_i Y_i = 57\|\theta) p(\theta)}{\displaystyle\int_{\theta}\mathbb{P}(\sum_i Y_i = 57\|\theta) p(\theta)\, d\theta}
+p(\theta|\sum_i Y_i = 57) = \frac{\mathbb{P}(\sum_i Y_i = 57|\theta) p(\theta)}{\displaystyle\int_{\theta}\mathbb{P}(\sum_i Y_i = 57|\theta) p(\theta)\, d\theta}
 $$
 
 Note firs that the denominator in the last expression is just a normalizing constant, so in order to avoid computing this constant, we will plot only the function
 
 $$
-\mathbb{P}(\sum_i Y_i = 57\|\theta) p(\theta)
+\mathbb{P}(\sum_i Y_i = 57|\theta) p(\theta)
 $$
 on the interval $[0,1]$:
 
