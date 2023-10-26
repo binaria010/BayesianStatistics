@@ -22,17 +22,17 @@
 <nav>
  <ol>
      <li><a href="#introbayesian"> Introduction to Bayesian Inference  </a></li>
-     <li>Frequentist Approach </li>
-         <ul> 
-           <li> <a href = "HypothesisTest">  Hypothesis Test</a> </li>
-         </ul>
      <li> Bayesian Approach</li>
          <ul>
            <li><a href="ConjugateDistributions">Conjugate Distributions</a></li>
-         <li> Algorithms and Simulations</li>
-             <ol>
-               <li><a href = "Metropolis-Hastings"> Metropolis Hastings Algorithm </a></li>
-             </ol>
+        </ul>
+    <li>Frequentist Approach </li>
+         <ul> 
+           <li> <a href = "HypothesisTest">  Hypothesis Test</a> </li>
+         </ul>
+    <li> Markov Chain Monte Carlo: Algorithms and Simulations</li>
+        <ul>
+            <li><a href = "Metropolis-Hastings"> Metropolis Hastings Algorithm </a></li>
          </ul>
  </ol>
 </nav>
@@ -78,6 +78,7 @@ For the moment assume that your believe on $\theta$ is that $\theta \in\{0, 0.1,
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy
 ```
 
 
@@ -87,17 +88,17 @@ sum_y = 57
 thetas = np.linspace(0, 1., 11)
 x = np.linspace(0, 1, 1000)
 
-p_Y = lambda theta: theta**(sum_y)*(1-theta)**(n - sum_y)
+p_Y_cond_theta = lambda theta: scipy.special.comb(n, sum_y)*theta**(sum_y)*(1-theta)**(n - sum_y)
 
 plt.figure(figsize=(10, 5))
 plt.subplot(121)
-plt.plot(thetas, p_Y(thetas), ".")
-plt.xlabel("theta")
-plt.ylabel("p(Y|theta)")
+plt.plot(thetas, p_Y_cond_theta(thetas), ".")
+plt.xlabel("$\\theta$")
+plt.ylabel("$p(Y|\\theta)$")
 plt.subplot(122)
-plt.plot(x, p_Y(x), ".")
-plt.xlabel("theta")
-plt.ylabel("p(Y|theta)")
+plt.plot(x, p_Y_cond_theta(x), ".")
+plt.xlabel("$\\theta$")
+plt.ylabel("$p(Y|\\theta)$")
 plt.show()
 ```
 
@@ -106,6 +107,144 @@ plt.show()
 ![png](index_files/index_4_0.png)
     
 
+
+
+```python
+theta_star = np.argmax(p_Y_cond_theta(thetas))
+thetas[theta_star]
+```
+
+
+
+
+    0.6000000000000001
+
+
+
+
+```python
+thetas
+```
+
+
+
+
+    array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1. ])
+
+
+
+the likelihood attains its maximum for $\theta = 0.6$
+
+It can be shown that for $\theta \in [0,1]$, at $\theta^{*}= \frac{57}{100}$ the function $\mathbb{P}(\sum_i Y_i = 57\|\theta)$ attains its maximum value, this solution is called the *maximum likelihood estimate* of $\theta$ for the given sample.
+
+This estimator is found using the frequentist approach to estimation. In this case, we consider $\theta$ to be an unknown but deterministic quantity.
+
+The Bayesian approach consists on regarding $\theta$ as a random variable with a given prior "believe", that is, a given prior distribution. Let us do that in this example:
+
+Suppose we have no idea on what value of these listed values is the better prior believe for $\theta$, then assume all of them are equally probable, that is, assume a prior uniform (discrete) distribution on $\{0, 0.1, 0.2, \dots, 0.9, 1.0\}$. Then
+
+$$
+p(\theta = k) =\frac{1}{11} \text{ for } k\in \{0, 0.1, 0.2, \dots, 0.9, 1.0\}
+$$
+
+Using this prior distribution and the likelihood of the data $\mathbb{P}(\sum_i Y_i = 57\|\theta)$ we compute, via Bayes Rule,  the posterior distribution of $\theta$:
+
+$$
+p(\theta\|\sum_i Y_i = 57) = \frac{\mathbb{P}(\sum_i Y_i = 57\|\theta) p(\theta)}{\sum_{\theta}\mathbb{P}(\sum_i Y_i = 57\|\theta) p(\theta)}=\frac{\mathbb{P}(\sum_i Y_i = 57\|\theta)}{\sum_{\theta}\mathbb{P}(\sum_i Y_i = 57\|\theta)}
+$$
+
+and we plot this expression as a function of $\theta$:
+
+
+```python
+thetas = thetas = np.linspace(0. , 1. , 11)
+denominator = sum([p_Y_cond_theta(theta) for theta in thetas])
+
+posterior_theta = lambda theta: p_Y_cond_theta(theta)/denominator
+
+plt.figure(figsize=(10,6))
+plt.plot(thetas, posterior_theta(thetas), '.')
+plt.xlabel("$\\theta$")
+plt.ylabel('Posterior')
+plt.show()
+```
+
+
+    
+![png](index_files/index_10_0.png)
+    
+
+
+the value of $\theta\in\{0., 0.1, \dots, 0.9, 1.0\}$ for which the posterior $p(\theta\|\sum_i Y_i = 57)$ attains its maximum is: 
+
+
+```python
+theta_max = np.argmax(posterior_theta(thetas))
+print(thetas[theta_max])
+```
+
+    0.6000000000000001
+
+
+Finally, consider $\theta$ a continuous random variable with support on the interval $[0,1]$ and give as a prior distribution the uniform distribution, that is, its density function is:
+
+$$
+p(\theta) = {\bf 1}_{[0,1]}(\theta)
+$$
+
+Then we will plot the posterior distribution of $\theta$, which is:
+
+$$
+p(\theta\|\sum_i Y_i = 57) = \frac{\mathbb{P}(\sum_i Y_i = 57\|\theta) p(\theta)}{\displaystyle\int_{\theta}\mathbb{P}(\sum_i Y_i = 57\|\theta) p(\theta)\, d\theta}
+$$
+
+Note firs that the denominator in the last expression is just a normalizing constant, so in order to avoid computing this constant, we will plot only the function
+
+$$
+\mathbb{P}(\sum_i Y_i = 57\|\theta) p(\theta)
+$$
+on the interval $[0,1]$:
+
+
+```python
+t = np.linspace(0, 1.0, 1000)
+a = 1 + sum_y
+b = 1 + n -sum_y
+
+plt.figure(figsize=(12,6))
+plt.subplot(121)
+plt.plot(t, p_Y_cond_theta(t))
+plt.xlabel("$\\theta$")
+plt.ylabel("$p(\\theta | y)$")
+plt.title("Posterior of $\\theta$")
+
+plt.subplot(122)
+plt.plot(t, scipy.stats.beta.pdf(t, a = a, b = b))
+plt.xlabel("$\\theta$")
+plt.ylabel("$Beta(\\alpha, \\beta)$")
+plt.title(f"Beta distribution with $\\alpha = ${a} and $\\beta = ${b}")
+
+txt = "Comparisson between the scaled posterior of $\\theta$ (left) and the Beta distribution (right)"
+plt.text(x = -0.1, y =-2.0, s = txt,  ha='center', fontsize='large')
+
+plt.show()
+
+
+```
+
+
+    
+![png](index_files/index_14_0.png)
+    
+
+
+We will see after that when the prior for $\theta$ is a uniform distribution in $[0,1]$ and the data is, conditional on $\theta$, Binomial the posterior of $\theta$ is a Beta distribution. Even more, since a uniform distribution can be seen as a Beta distribution, this result is true for a Beta distribution as a prior. 
+When the prior and the posterior belong to the same family of distributions, it is said that the distribution of the data and the posterior distribution are *conjugate* distributions. In this example we say that Binomial and Beta distributions are conjugate.
+
+
+```python
+
+```
 
  <a href="HypothesisTest" class="previous">Next &raquo;</a>
 
