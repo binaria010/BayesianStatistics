@@ -38,6 +38,9 @@
 </nav>
 </header>
 
+ <a href="ConjugateDist" class="previous">Next &raquo;</a>
+
+
 
 <h2 id = "introbayesian">Introduction to Bayesian Inference  </h2>
  <p>
@@ -66,7 +69,7 @@ $$
   p(y_1,\dots, y_n |\theta) = \prod_{i=1}^n\theta^{y_i}(1-\theta)^{1-\theta_i} = \theta^{\sum_{i}y_i}(1-\theta)^{n-\sum_{i}y_i}
 $$
 
-For the moment assume that your believe on $\theta$ is that $\theta \in\{0, 0.1, 0.2, \dots, 0.9, 1 \}$. Given that the results of the survey are: $\sum_{i=1}^n y_i = 57$,let us compute for each value of $\theta$, $\mathbb{P}(\sum_i Y_i = 57 |\theta)$ and plot these results as a function of $\theta$:
+For the moment assume that your believe on $\theta$ is that $\theta \in\{0, 0.1, 0.2, \dots, 0.9, 1 \}$. Given that the results of the survey are: $\sum_{i=1}^n y_i = 57$,let us compute for each value of $\theta$, $\mathbb{P}(\sum_i Y_i = 57 \|\theta)$ and plot these results as a function of $\theta$:
 
 
 
@@ -88,7 +91,7 @@ sum_y = 57
 thetas = np.linspace(0, 1., 11)
 x = np.linspace(0, 1, 1000)
 
-p_Y_cond_theta = lambda theta: scipy.special.comb(n, sum_y)*theta**(sum_y)*(1-theta)**(n - sum_y)
+p_Y_cond_theta = lambda theta: theta**(sum_y)*(1-theta)**(n - sum_y)
 
 plt.figure(figsize=(10, 5))
 plt.subplot(121)
@@ -104,7 +107,7 @@ plt.show()
 
 
     
-![png](index_files/index_4_0.png)
+![png](index_files/index_5_0.png)
     
 
 
@@ -171,11 +174,11 @@ plt.show()
 
 
     
-![png](index_files/index_10_0.png)
+![png](index_files/index_11_0.png)
     
 
 
-the value of $\theta\in\{0., 0.1, \dots, 0.9, 1.0\}$ for which the posterior $p(\theta|\sum_i Y_i = 57)$ attains its maximum is: 
+the value of $\theta\in\{0., 0.1, \dots, 0.9, 1.0\}$ for which the posterior $p(\theta\|\sum_i Y_i = 57)$ attains its maximum is: 
 
 
 ```python
@@ -195,13 +198,13 @@ $$
 Then we will plot the posterior distribution of $\theta$, which is:
 
 $$
-p(\theta|\sum_i Y_i = 57) = \frac{\mathbb{P}(\sum_i Y_i = 57|\theta) p(\theta)}{\displaystyle\int_{\theta}\mathbb{P}(\sum_i Y_i = 57|\theta) p(\theta)\, d\theta}
+p(\theta\|\sum_i Y_i = 57) = \frac{\mathbb{P}(\sum_i Y_i = 57\|\theta) p(\theta)}{\displaystyle\int_{\theta}\mathbb{P}(\sum_i Y_i = 57\|\theta) p(\theta)\, d\theta}
 $$
 
 Note firs that the denominator in the last expression is just a normalizing constant, so in order to avoid computing this constant, we will plot only the function
 
 $$
-\mathbb{P}(\sum_i Y_i = 57|\theta) p(\theta)
+\mathbb{P}(\sum_i Y_i = 57\|\theta) p(\theta)
 $$
 on the interval $[0,1]$:
 
@@ -234,18 +237,14 @@ plt.show()
 
 
     
-![png](index_files/index_14_0.png)
+![png](index_files/index_15_0.png)
     
 
 
 We will see after that when the prior for $\theta$ is a uniform distribution in $[0,1]$ and the data is, conditional on $\theta$, Binomial the posterior of $\theta$ is a Beta distribution. Even more, since a uniform distribution can be seen as a Beta distribution, this result is true for a Beta distribution as a prior. 
 When the prior and the posterior belong to the same family of distributions, it is said that the distribution of the data and the posterior distribution are *conjugate* distributions. In this example we say that Binomial and Beta distributions are conjugate.
 
+ <a href="ConjugateDist" class="previous">Next &raquo;</a>
 
-```python
-
-```
-
- <a href="HypothesisTest" class="previous">Next &raquo;</a>
 
 
