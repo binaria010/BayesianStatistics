@@ -71,6 +71,7 @@ $$
 
 
 we conclude that the denominator is:
+
 $$
 p(y_1,\dots, y_n) = \frac{\Gamma(\alpha_{prior}+\sum_{i}y_i)\Gamma(\beta_{prior} +n -\sum_{i}y_i)}{\Gamma(\alpha_{prior} + \beta_{prior} +n)}.
 $$
