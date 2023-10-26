@@ -24,7 +24,7 @@
      <li><a href="#introbayesian"> Introduction to Bayesian Inference  </a></li>
      <li> Bayesian Approach</li>
          <ul>
-           <li><a href="ConjugateDistributions">Conjugate Distributions</a></li>
+           <li><a href="ConjugateDist">Conjugate Distributions</a></li>
         </ul>
     <li>Frequentist Approach </li>
          <ul> 
