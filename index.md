@@ -138,7 +138,7 @@ thetas
 
 the likelihood attains its maximum for $\theta = 0.6$
 
-It can be shown that for $\theta \in[0,1]$, at $\theta^{*}= \frac{57}{100}$ the function $\mathbb{P}(\sum_i Y_i = 57\vert\theta)$ attains its maximum value, this solution is called the *maximum likelihood estimate* of $\theta$ for the given sample.
+It can be shown that for $\theta \in[0,1]$, at $\tilde\theta= \frac{57}{100}$ the function $\mathbb{P}(\sum_i Y_i = 57\vert\theta)$ attains its maximum value, this solution is called the *maximum likelihood estimate* of $\theta$ for the given sample.
 
 This estimator is found using the frequentist approach to estimation. In this case, we consider $\theta$ to be an unknown but deterministic quantity.
 
@@ -150,10 +150,10 @@ $$
 p(\theta = k) =\frac{1}{11} \text{ for } k\in \{0, 0.1, 0.2, \dots, 0.9, 1.0\}
 $$
 
-Using this prior distribution and the likelihood of the data $\mathbb{P}(\sum_i Y_i = 57|\theta)$ we compute, via Bayes Rule,  the posterior distribution of $\theta$:
+Using this prior distribution and the likelihood of the data $\mathbb{P}(\sum_i Y_i = 57 \vert \theta)$ we compute, via Bayes Rule,  the posterior distribution of $\theta$:
 
 $$
-p(\theta\vert\sum_i Y_i = 57) = \frac{\mathbb{P}(\sum_i Y_i = 57\vert \theta) p(\theta)}{\sum_{\theta}\mathbb{P}(\sum_i Y_i = 57|\theta) p(\theta)}=\frac{\mathbb{P}(\sum_i Y_i = 57|\theta)}{\sum_{\theta}\mathbb{P}(\sum_i Y_i = 57|\theta)}
+p(\theta\vert\sum_i Y_i = 57) = \frac{\mathbb{P}(\sum_i Y_i = 57\vert \theta) p(\theta)}{\sum_{\theta}\mathbb{P}(\sum_i Y_i = 57\vert\theta) p(\theta)}=\frac{\mathbb{P}(\sum_i Y_i = 57\vert\theta)}{\sum_{\theta}\mathbb{P}(\sum_i Y_i = 57\vert\theta)}
 $$
 
 and we plot this expression as a function of $\theta$:
