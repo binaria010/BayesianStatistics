@@ -19,7 +19,12 @@
 
 <h1> Conjugate Distributions </h1>
 
-We already saw in the <a href="index">introduction </a> that if one has a random sample $Y_1, \dots, Y_n$ such that $Y_i \vert \theta \sim Ber(\theta)$ and $\theta \sim \mathcal{U}(0,1) = Beta(1,1)$ then the posterior distribution of $\theta$ is again a Beta distribution $Beta(1 + \sum_{i}y_i, 1 + n -\sum_{i}y_{i})$. We say that the Beta distribution os conjugate to the Binomial distribution.
+We already saw in the <a href="index"> Introduction </a> that if one has a random sample $Y_1, \dots, Y_n$ such that 
+$$
+Y_i \vert \theta \sim Ber(\theta),\quad \text{and} \theta \sim \mathcal{U}(0,1) = Beta(1,1)
+$$
+
+then the posterior distribution of $\theta$ is again a Beta distribution $Beta(1 + \sum_{i}y_i, 1 + n -\sum_{i}y_{i})$. We say that the Beta distribution os conjugate to the Binomial distribution.
 
 
 In this section we will see this in more detail and a few more examples.
