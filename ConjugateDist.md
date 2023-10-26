@@ -3,6 +3,7 @@
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
+        extensions: ["amsthm.js", "AMSmath.js","AMSsymbols.js", "autobold.js"],
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
          displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
          processEscapes: true
