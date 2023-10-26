@@ -138,7 +138,7 @@ thetas
 
 the likelihood attains its maximum for $\theta = 0.6$
 
-It can be shown that for $\theta \in [0,1]$, at $\theta^{*}= \frac{57}{100}$ the function $\mathbb{P}(\sum_i Y_i = 57|\theta)$ attains its maximum value, this solution is called the *maximum likelihood estimate* of $\theta$ for the given sample.
+It can be shown that for $\theta \in [0,1]$, at $\theta^{*}= \frac{57}{100}$ the function $\mathbb{P}(\sum_i Y_i = 57 |\theta)$ attains its maximum value, this solution is called the *maximum likelihood estimate* of $\theta$ for the given sample.
 
 This estimator is found using the frequentist approach to estimation. In this case, we consider $\theta$ to be an unknown but deterministic quantity.
 
