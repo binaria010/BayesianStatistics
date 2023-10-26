@@ -48,9 +48,11 @@ $$
 where $p(y_1,\dots, y_n):=\int_{0}^{1} p(y_1,\dots, y_n \vert \theta)p(\theta)\,d\theta$
 
 Since $Y_1,\dots, Y_n$ is a $\theta$ random sample, then 
+
 $$
 p(y_1,\dots, y_n \vert \theta) = \prod_{i=1}^{n}p(y_i \vert \theta) = \prod_{i=1}^{n}\theta^{y_i}(1-\theta)^{1-y_i} = \theta^{\sum_{i}y_i}(1-\theta)^{n -\sum_{i}y_i}
 $$
+
 where by $\sum_{i}y_i$ we mean $\sum_{i=1}^n y_i$.
 
 Therefore the numerator in the posterior is:
