@@ -69,14 +69,14 @@ where by $\sum_{i}y_i$ we mean $\sum_{i=1}^n y_i$.
 Therefore the numerator in the posterior is:
 
 $$
-\begin{align}
-&\frac{\Gamma(\alpha_{prior} +\beta_{prior})}{\Gamma(\alpha_{prior})\Gamma(\beta_{prior})}\theta^{\alpha_{prior}-1}(1-\theta)^{\beta_{prior} -1} \theta^{\sum_{i}y_i}(1-\theta)^{n -\sum_{i}y_i} \\
+\begin{aligned}
+p(\theta \vert y_1,\dots y_n) = &\frac{\Gamma(\alpha_{prior} +\beta_{prior})}{\Gamma(\alpha_{prior})\Gamma(\beta_{prior})}\theta^{\alpha_{prior}-1}(1-\theta)^{\beta_{prior} -1} \theta^{\sum_{i}y_i}(1-\theta)^{n -\sum_{i}y_i} \\
   \\
-=& \frac{\Gamma(\alpha_{prior} +\beta_{prior})}{\Gamma(\alpha_{prior})\Gamma(\beta_{prior})}\theta^{\alpha_{prior} + \sum_{i}y_i -1}(1-\theta)^{\beta_{prior}+ n -\sum_{i}y_i -1} 
-\end{align}
+= & \frac{\Gamma(\alpha_{prior} +\beta_{prior})}{\Gamma(\alpha_{prior})\Gamma(\beta_{prior})}\theta^{\alpha_{prior} + \sum_{i}y_i -1}(1-\theta)^{\beta_{prior}+ n -\sum_{i}y_i -1} \label{equ}
+\end{aligned}
 $$
 
-Meanwhile the denominator is simply the integral with respect to $\theta$ of the last expression above, this is because the posterior is a probability density. By use of the following property:
+Meanwhile the denominator is simply the integral with respect to $\theta$ of the last expression above \ref{equ}, this is because the posterior is a probability density. By use of the following property:
 
 $$
 \int_{0}^1 x^{a-1}(1-x)^{b-1} \,dx= \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)} 
