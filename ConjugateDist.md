@@ -16,12 +16,12 @@
 
   <style> 
     .previous {
-  background-color: #04AA6D;
+  background-color: #f1f1f1;
   color: black;
 }
 .next {
-  background-color: #04AA6D;
-  color: white;
+  background-color: #f1f1f1;
+  color: black;
 }
   </style>
 </head>
@@ -53,7 +53,7 @@ $$
 f_X(x) = \frac{\Gamma(\alpha +\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta -1}{\bf 1}_{(0,1)}(x)
 $$
 
-Let $\theta \in \Theta$ a parameter of interest. Let $Y_1,\dots,Y_n$ be a $\theta$ random sample, that is, the variables are conditional on $\theta$ independent and identically distributed, with distribution given by $Y_i \vert \theta \sim Ber(\theta)$.
+Let $\theta \in \Theta$ a parameter of interest. Let $Y_1,\dots,Y_n$ be a $\theta$ random sample, that is, the variables are conditional on $\theta$ independent and identically distributed, with distribution given by $Y_i|\theta \sim Ber(\theta)$.
 
 Suppose that our prior believe on $\theta$ is that $\theta \sim Beta(\alpha_{prior}, \beta_{prior})$ for some $\alpha_{prior}, \beta_{prior}>0$ to be specified, then the posterior distribution of $\theta$ computed using Bayes rule is:
 
@@ -108,4 +108,78 @@ $$
 $$
 
 
-<a href="index" class="previous"> &laquo; Previous</a>    <a href="HypothesisTest" class="next">Next &raquo;</a>  
+For this posterior distribution we will have the posterior expected mean and posterior mode to be:
+
+$$
+\begin{align}
+\mathbb{E}(\theta \vert y_1, \dots, y_n) = & \frac{\alpha_{post}}{\alpha_{post} +\beta_{post}} \\
+= & \frac{\alpha_{prior} + \sum_{i}y_i}{\alpha_{prior} + \beta_{prior} + n }\\
+= & \frac{n}{\alpha_{prior} + \beta_{prior} + n}\bar{y}_n + \frac{\alpha_{prior} + \beta_{prior}}{\alpha_{prior} + \beta_{prior} + n}\frac{\alpha_{prior}}{\alpha_{prior} +\beta_{prior}}\\
+\end{align}
+$$
+
+where $\bar{y}_n = \frac{\sum_{i=1}^n y_i}{n}$.
+
+That is, the posterior expected value is a weighted average between the sample mean $\bar{y}_n$ and the prior expected value. Due to this weighted average, the quantity $\alpha_{prior}+\beta_{prior}$ is called sometimes the *effective size* while of course, $n$ is the sample size.
+
+<h3> Prediction </h3>
+
+An important feature in this approach is the existence of a  predictive distribution. Let us assume we are in the same case as before, where the prior for $\theta$ is $Beta(1,1)$ and the data is, conditionally on $\theta$ iid with $Y_i \vert \theta \sim Ber(\theta)$ for $i=1, \dots, n$. 
+
+Now, consider a new datapoint, one that has not be seen before, let's call this new observation $Y_{new}$ (we use capital letters since we are assuming this has not been observed so it is random) from the same population, then the *predictive distribution* of $Y_{new}$ can be computed as follows:
+
+$$
+\begin{align*}
+p_{Y_{new}}(y |y_1,\dots, y_n) = & \int_{\theta \in \Theta}p(y, \theta \vert y_1,\dots, y_n)\,d\theta \\
+= & \int_{\theta \in \Theta}p(y \vert \theta, y_1,\dots, y_n)p(\theta \vert y_1,\dots, y_n)\,d\theta \\
+= & \int_{\theta \in \Theta} \theta p(\theta \vert y_1,\dots, y_n)\,d\theta = \mathbb{E}(\theta \vert y_1, \dots, y_n)
+\end{align*}
+$$
+
+In this case, we will have:
+
+$$
+\mathbb{P}(Y_{new} = 1\vert y_1,\dots, y_n) = \frac{n}{2 + n}\bar{y}_n + \frac{2}{2 + n}\frac{1}{2}
+$$
+
+
+Lets make some simulations to see these results in action!
+
+
+```python
+# import the usual suspects!
+
+import numpy as np
+import scipy.stats
+import matplotlib.pyplot as plt
+```
+
+
+```python
+n = 100
+a_prior = 1
+b_prior = 1
+num_iter = 10**4
+Y_new = np.zeros(num_iter)
+
+# simulate theta from a Beta(1,1) and then simulate Y_1,...,Y_n from a Bernoulli(theta):
+theta = scipy.stats.beta.rvs(a = a_prior, b = b_prior, size = 1)
+y = scipy.stats.binom.rvs(n = 1, p = theta, size = n) # draw n samples of Ber(theta)
+# compute the new parameters
+a_post = a_prior + y.sum()
+b_post = b_prior +n - y.sum()
+
+for t in range(num_iter):
+    theta_post = scipy.stats.beta.rvs(a = a_post, b = b_post, size = 1)
+    Y_new[t] = scipy.stats.binom.rvs(n=1, p =theta_post, size = 1)
+```
+
+
+```python
+print(f"The posterior expectation of $\\theta$ is : {a_post/(a_post+b_post)}")
+print(f"the simulated $\mathbb P(Y_new = 1|y_1,\\dots, y_n) = $ {Y_new.mean()}")
+```
+
+    The posterior expectation of $\theta$ is : 0.5490196078431373
+    the simulated $\mathbb P(Y_new = 1|y_1,\dots, y_n) = $ 0.5446
+
