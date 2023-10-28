@@ -50,7 +50,7 @@ $$
 then the posterior distribution of $\theta$ is again a Beta distribution $Beta(1 + \sum_{i}y_i, 1 + n -\sum_{i}y_{i})$. We say that the Beta distribution is conjugate to the Binomial distribution.
 
 <span class = "definition"> Definition </span>  (Conjugate Distribution)<br>
-A class $\mathcal{P}$ of prior distributions for $\theta$ is said to be conjugate to the sampling model $p(y_1,\dots, y_n \vert \theta$ if
+A class $\mathcal{P}$ of prior distributions for $\theta$ is said to be conjugate to the sampling model $p(y_1,\dots, y_n \vert \theta)$ if
 
 $$
 p(\theta) \in \mathcal{P} \Rightarrow p(\theta \vert y_1, \dots, y_n) \in \mathcal{P}
