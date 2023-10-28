@@ -15,14 +15,19 @@
   <meta name="google-site-verification" content="kuks5e4as6qBaGVCSzmHkQJa5Tss89_g5DmRXeUi7K8" />
 
   <style> 
+  body{
     .previous {
-  background-color: #f1f1f1;
-  color: black;
-}
-.next {
-  background-color: #f1f1f1;
-  color: black;
-}
+    background-color: #f1f1f1;
+    color: black;
+    }
+    .next {
+      background-color: #04AA6D;
+      color: white;
+    }
+    .example,.theorem,.lemma,.problem, .definition {
+       font-weight:bold; 
+    }
+  }
   </style>
 </head>
 
@@ -42,7 +47,14 @@ $$
 
 
 
-then the posterior distribution of $\theta$ is again a Beta distribution $Beta(1 + \sum_{i}y_i, 1 + n -\sum_{i}y_{i})$. We say that the Beta distribution os conjugate to the Binomial distribution.
+then the posterior distribution of $\theta$ is again a Beta distribution $Beta(1 + \sum_{i}y_i, 1 + n -\sum_{i}y_{i})$. We say that the Beta distribution is conjugate to the Binomial distribution.
+
+<span class = "definition"> Definition </span>  (Conjugate Distribution)<br>
+A class $\mathcal{P}$ of prior distributions for $\theta$ is said to be conjugate to the sampling model $p(y_1,\dots, y_n \vert \theta$ if
+
+$$
+p(\theta) \in \mathcal{P} \Rightarrow p(\theta \vert y_1, \dots, y_n) \in \mathcal{P}
+$$
 
 In this section we will see this in more detail and a few more examples.
 
