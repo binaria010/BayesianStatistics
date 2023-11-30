@@ -41,7 +41,7 @@ We already saw in the <a href="index">introduction </a> that if one has a random
 
 $$
 \begin{equation*}
-Y_i | \theta \sim Ber(\theta)\quad \text{and} \quad \theta \sim \mathcal{U}(0,1) = Beta(1,1)
+Y_i \vert  \theta \sim Ber(\theta)\quad \text{and} \quad \theta \sim \mathcal{U}(0,1) = Beta(1,1)
 \end{equation*}
 $$
 
@@ -149,7 +149,7 @@ Now, consider a new datapoint, one that has not be seen before, let's call this 
 
 $$
 \begin{align*}
-p_{Y_{new}}(y |y_1,\dots, y_n) = & \int_{\theta \in \Theta}p(y, \theta \vert y_1,\dots, y_n)\,d\theta \\
+p_{Y_{new}}(y \vert y_1,\dots, y_n) = & \int_{\theta \in \Theta}p(y, \theta \vert y_1,\dots, y_n)\,d\theta \\
 = & \int_{\theta \in \Theta}p(y \vert \theta, y_1,\dots, y_n)p(\theta \vert y_1,\dots, y_n)\,d\theta \\
 = & \int_{\theta \in \Theta} \theta p(\theta \vert y_1,\dots, y_n)\,d\theta = \mathbb{E}(\theta \vert y_1, \dots, y_n)
 \end{align*}
@@ -196,11 +196,11 @@ for t in range(num_iter):
 
 ```python
 print(f"The posterior expectation of $\\theta$ is : {a_post/(a_post+b_post)}")
-print(f"the simulated $\mathbb P(Y_new = 1|y_1,\\dots, y_n) = $ {Y_new.mean()}")
+print(f"the simulated $\mathbb P(Y_new = 1\vert y_1,\\dots, y_n) = $ {Y_new.mean()}")
 ```
 
     The posterior expectation of $\theta$ is : 0.4019607843137255
-    the simulated $\mathbb P(Y_new = 1|y_1,\dots, y_n) = $ 0.3989
+    the simulated $\mathbb P(Y_new = 1\vert y_1,\dots, y_n) = $ 0.3989
 
 
 <h2> <a id = "poisson">Poisson Model </a></h2>
@@ -310,7 +310,7 @@ p(y\vert y_1,\dots y_n) =& \int_{0}^{\infty}p(y,\theta \vert y_1,\dots, y_n)\,d\
 $$
 </a>
 
-That is, $y | y_1,\dots y_n\sim BN(\alpha_{post}, \beta_{post}/(\beta_{post} +1))$.
+That is, $y \vert  y_1,\dots y_n\sim BN(\alpha_{post}, \beta_{post}/(\beta_{post} +1))$.
 
 
 Let's simulate some new data and plot its empirical distribution
@@ -365,11 +365,11 @@ Y_new = scipy.stats.nbinom.rvs(n = a_post, p = b_post/(b_post + 1), size = n_tes
 plt.figure(figsize=(12,6))
 plt.subplot(121)
 sns.histplot(Y_cond_theta_test, bins= 100)
-plt.xlabel("$Y_{test}|\\theta $")  #+ f"$ \sim Pois({theta})$")
+plt.xlabel("$Y_{test}\vert \\theta $")  #+ f"$ \sim Pois({theta})$")
 
 plt.subplot(122)
 sns.histplot(Y_cond_theta_new, bins=100)
-plt.xlabel("$Y_{new}|\\theta$")  #| \\theta_{post}$" + f"$\sim Pois({theta_post})$")
+plt.xlabel("$Y_{new}\vert \\theta$")  #\vert  \\theta_{post}$" + f"$\sim Pois({theta_post})$")
 
 plt.show()
 ```
@@ -385,7 +385,7 @@ plt.show()
 plt.figure(figsize=(12,6))
 plt.subplot(121)
 sns.histplot(Y_cond_theta_new, bins = 100)
-plt.xlabel("$Y_{new}|\\theta$")  # \\sim + f"BN({a_prior, b_prior/(b_prior+1)})$")
+plt.xlabel("$Y_{new}\vert \\theta$")  # \\sim + f"BN({a_prior, b_prior/(b_prior+1)})$")
 
 plt.subplot(122)
 sns.histplot(Y_new, bins = 100)
