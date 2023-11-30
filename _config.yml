@@ -6,5 +6,6 @@ relative_links:
 include:
   - index.md
   - ConjugateDist.md
+  - WorkedExamples.md
   - Metropolis-Hastings.md
   - HypothesisTest.md
