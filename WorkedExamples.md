@@ -355,7 +355,3 @@ Note that the mean of $t$ is:
 
 while the value of $\frac{S^2_{y_A}}{\bar{y}_A}$ the ratio of the sample mean to its sample variance is 0.719, not very close to 1 as it will be expected for Poisson data, the histogram above shows that our posterior model reproduces samples with similar behaviour than the sample observed.
 
-
-```python
-
-```
