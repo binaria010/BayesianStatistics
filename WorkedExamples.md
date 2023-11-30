@@ -118,7 +118,8 @@ n_sim = 1000
 
 ```
 
-we will generate n_im gamma random variables $\theta_A$ and $\theta_B$ and compute the proportion of times the event $\{\theta_A >\theta_B\}$ occurred, this will give us an estimation for this probability
+we will generate n_im gamma random variables $\theta_A$ and $\theta_B$ and compute the proportion of times the event 
+$\{\theta_A >\theta_B\}$ occurred, this will give us an estimation for this probability
 
 
 ```python
