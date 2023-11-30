@@ -493,6 +493,6 @@ where $p(y_i)= \frac{\Gamma(y_i + \alpha)}{\Gamma(y_i +1)\Gamma(\alpha)}\left(\f
 
 
 
-<a href="examples"> <h3> Worked Examples </h3> </a> 
+<a href="WorkedExamples"> <h3> Worked Examples </h3> </a> 
 
-</html>
+
