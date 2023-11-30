@@ -40,7 +40,7 @@ In this section we solve some problems applying the tecniques saw in the Section
 
 <h2><a href="example1"> <strong>Example 1. </strong>  </a></h2>
 
-*Tumor counts*: A cancer laboratory is estimating the rate of tumorigenesis in two strains of mice, A and B. They have tumor count data for 10 mice in strain A and 13 mice in strain B. Type A mice have been well studied, and information from other laboratories suggests that type A mice have tumor counts that are approximately Poisson-distributed with a mean of 12. Tumor count rates for type B mice are unknown, but type B mice are related to type A mice. The observed tumor counts for the two populations are
+<strong> Tumor counts</strong>: A cancer laboratory is estimating the rate of tumorigenesis in two strains of mice, A and B. They have tumor count data for 10 mice in strain A and 13 mice in strain B. Type A mice have been well studied, and information from other laboratories suggests that type A mice have tumor counts that are approximately Poisson-distributed with a mean of 12. Tumor count rates for type B mice are unknown, but type B mice are related to type A mice. The observed tumor counts for the two populations are
 
 $$
 y_A = (12,9,12,14,13,13,15,8,15,6)  \qquad y_B = (11,11,10,9,9,8,7,10,6,8,8,9,7)
@@ -54,10 +54,14 @@ $$
 
 The reason for these priors is the following. Remember that in a prior Gamma distribution 
 
-* $\beta$ is interpreted as the number of prior obaservations
-* $\alpha$ is interpretes as the sum of counts from $\beta$ prior observations
+<ul>
+  <il> $\beta$ is interpreted as the number of prior obaservations </il>
+ 
+  <il> $\alpha$ is interpretes as the sum of counts from $\beta$ prior observations. </il>
 
-thus as it is known that the mean is 12 and there are 10 mices of type A, a natural choice for the parameters is $\alpha_A = 120, ~ \beta_A = 10$. For $\theta_B$ since we have not much information only that the mice of type B is similar to $A$ then a natural choice is: $\alpha_B = 12$ and $\beta_B = 1$, also in this case the prior expected values for $\theta_A$ and $\theta_B$ are both 12.
+</ul>
+
+thus as it is known that the mean is 12 and there are 10 mices of type A, a natural choice for the parameters is $\alpha_A = 120$ ,\beta_A = 10$. For $\theta_B$ since we have not much information only that the mice of type B is similar to $A$ then a natural choice is: $\alpha_B = 12$ and $\beta_B = 1$, also in this case the prior expected values for $\theta_A$ and $\theta_B$ are both 12.
 
 
 
