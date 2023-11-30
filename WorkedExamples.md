@@ -1,5 +1,3 @@
-<html>
-
 <head>
   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { tags: 'ams' } } }); </script>
   <script type="text/x-mathjax-config">
