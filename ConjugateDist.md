@@ -102,8 +102,6 @@ $$
 </a>
 
 
-
-
 Meanwhile the denominator is simply the integral with respect to $\theta$ of the last expression above [(1)](#expression) , this is because the posterior is a probability density. By use of the following property:
 
 $$
@@ -168,8 +166,6 @@ Lets make some simulations to see these results in action!
 
 
 ```python
-# import the usual suspects!
-
 import numpy as np
 import scipy.stats
 import matplotlib.pyplot as plt
