@@ -192,13 +192,13 @@ for t in range(num_iter):
 ```
 
 
-```python
+<!-- ```python
 print(f"The posterior expectation of $\\theta$ is : {a_post/(a_post+b_post)}")
 print(f"the simulated $\mathbb P(Y_new = 1|y_1,\\dots, y_n) = $ {Y_new.mean()}")
 ```
 
     The posterior expectation of $\theta$ is : 0.4019607843137255
-    the simulated $\mathbb P(Y_new = 1|y_1,\dots, y_n) = $ 0.3989
+    the simulated $\mathbb P(Y_new = 1|y_1,\dots, y_n) = $ 0.3989-->
 
 
 <h2> <a id = "poisson">Poisson Model </a></h2>
