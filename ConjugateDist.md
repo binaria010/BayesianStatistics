@@ -16,7 +16,7 @@
   </script>
   <meta name="google-site-verification" content="kuks5e4as6qBaGVCSzmHkQJa5Tss89_g5DmRXeUi7K8" />
 
- <!-- <style> 
+  <style> 
   body{
     .previous {
     background-color: #f1f1f1;
@@ -30,7 +30,7 @@
        font-weight:bold; 
     }
   }
-  </style> -->
+  </style>
 </head>
 
 
@@ -102,6 +102,8 @@ $$
 </a>
 
 
+
+
 Meanwhile the denominator is simply the integral with respect to $\theta$ of the last expression above [(1)](#expression) , this is because the posterior is a probability density. By use of the following property:
 
 $$
@@ -166,6 +168,8 @@ Lets make some simulations to see these results in action!
 
 
 ```python
+# import the usual suspects!
+
 import numpy as np
 import scipy.stats
 import matplotlib.pyplot as plt
@@ -178,18 +182,11 @@ a_prior = 1
 b_prior = 1
 num_iter = 10**4
 Y_new = np.zeros(num_iter)
-```
 
-simulate $\theta$ from a $Beta(1,1)$ and then simulate $Y_1,...,Y_n$ from a $Bernoulli(theta)$:
-
-```python
+# simulate theta from a Beta(1,1) and then simulate Y_1,...,Y_n from a Bernoulli(theta):
 theta = scipy.stats.beta.rvs(a = a_prior, b = b_prior, size = 1)
 y = scipy.stats.binom.rvs(n = 1, p = theta, size = n) # draw n samples of Ber(theta)
-```
-
-compute the new parameters
-
-```python
+# compute the new parameters
 a_post = a_prior + y.sum()
 b_post = b_prior +n - y.sum()
 
@@ -200,12 +197,12 @@ for t in range(num_iter):
 
 
 ```python
-print(f"The posterior expectation of theta is : {a_post/(a_post+b_post)}")
+print(f"The posterior expectation of $\\theta$ is : {a_post/(a_post+b_post)}")
 print(f"the simulated $\mathbb P(Y_new = 1|y_1,\\dots, y_n) = $ {Y_new.mean()}")
 ```
 
-The posterior expectation of $\theta$ is : 0.4019607843137255
-the simulated $\mathbb P(Y_new = 1|y_1,\dots, y_n) = $ 0.3989
+    The posterior expectation of $\theta$ is : 0.4019607843137255
+    the simulated $\mathbb P(Y_new = 1|y_1,\dots, y_n) = $ 0.3989
 
 
 <h2> <a id = "poisson">Poisson Model </a></h2>
