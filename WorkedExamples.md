@@ -28,7 +28,7 @@ $$
 y_A = (12,9,12,14,13,13,15,8,15,6)  \qquad y_B = (11,11,10,9,9,8,7,10,6,8,8,9,7)
 $$
 
-For this problem we will model the tumor counts in both strains as:  $y_A |\theta_A \sim \mathcal{P}ois(\theta_A)$ and $y_B |\theta_B \sim \mathcal{P}ois(\theta_B)$ with $\theta_A,\theta_B$ both random variables with prior distributions :
+For this problem we will model the tumor counts in both strains as:  $y_A \vert \theta_A \sim \mathcal{P}ois(\theta_A)$ and $y_B \vert \theta_B \sim \mathcal{P}ois(\theta_B)$ with $\theta_A,\theta_B$ both random variables with prior distributions :
 
 $$
 \theta_A \sim Gamma(120, 10) \qquad \theta_B \sim Gamma(12,1), \qquad p(\theta_A,\theta_B) =p(\theta_A)p(\theta_B)
@@ -70,19 +70,19 @@ print(sum_yB)
 
 The posterior expected values are:
 $$
-\mathbb E(\theta_A| y_A) = \frac{120 +117}{20}=\frac{237}{20}, \qquad \mathbb E(\theta_B| y_B) = \frac{12 +113}{1 + 13} = \frac{125}{14}
+\mathbb E(\theta_A\vert y_A) = \frac{120 +117}{20}=\frac{237}{20}, \qquad \mathbb E(\theta_B\vert y_B) = \frac{12 +113}{1 + 13} = \frac{125}{14}
 $$
 
 The posterior variances are:
 $$
-\mathbb V(\theta_A| y_A) = \frac{120 +117}{20^2}=\frac{237}{400}, \qquad \mathbb V(\theta_B| y_B) = \frac{125}{14^2}=\frac{125}{196} 
+\mathbb V(\theta_A\vert y_A) = \frac{120 +117}{20^2}=\frac{237}{400}, \qquad \mathbb V(\theta_B\vert y_B) = \frac{125}{14^2}=\frac{125}{196} 
 $$
 
 Now we would like to compare both tumor counts. For this we will compute 
 
-* $\mathbb{P}(\theta_A >\theta_B | y_A, y_B)$
+* $\mathbb{P}(\theta_A >\theta_B \vert y_A, y_B)$
 
-* $\mathbb{P}(\tilde{Y}_A > \tilde{Y}_B)$ where $\tilde{Y}_A, \tilde{Y}_B$ are random variable whose distributions are the posterior predictive $p(\tilde{y}|y_A), ~ p(\tilde{y}|y_B)$ respectively.
+* $\mathbb{P}(\tilde{Y}_A > \tilde{Y}_B)$ where $\tilde{Y}_A, \tilde{Y}_B$ are random variable whose distributions are the posterior predictive $p(\tilde{y}\verty_A), ~ p(\tilde{y}\verty_B)$ respectively.
 
 As a matter of fact we will  estimate these two probabilities, for the estimation part we will run Monte Carlo Simulations.
 
@@ -202,7 +202,7 @@ plt.figure(figsize=(16, 6))
 plt.subplot(121)
 sn.histplot(y_A_newPoiss, label = f"mean = {y_A_newPoiss.mean()}")
 plt.legend()
-plt.title("generating from Poisson $y_A |\\theta_A$")
+plt.title("generating from Poisson $y_A \vert\\theta_A$")
 plt.subplot(122)
 sn.histplot(y_A_new, label = f"mean = {y_A_new.mean()}")
 plt.legend()
@@ -213,7 +213,7 @@ plt.figure(figsize=(16, 6))
 plt.subplot(121)
 sn.histplot(y_B_newPoiss, label = f"mean = {y_B_newPoiss.mean()}")
 plt.legend()
-plt.title("generating from Poisson $y_B |\\theta_B$")
+plt.title("generating from Poisson $y_B \vert\\theta_B$")
 plt.subplot(122)
 sn.histplot(y_B_new, label = f"mean = {y_B_new.mean()}")
 plt.legend()
@@ -233,9 +233,9 @@ plt.show()
     
 
 
-Now lets go back to the prior distribution of $\theta_B$. Lets consider different priors and see how this will affect the values of $\mathbb{P}(\theta_A >\theta_B | y_A, y_B)$ and $\mathbb{P}(\tilde{Y}_A > \tilde{Y}_B)$.
+Now lets go back to the prior distribution of $\theta_B$. Lets consider different priors and see how this will affect the values of $\mathbb{P}(\theta_A >\theta_B \vert y_A, y_B)$ and $\mathbb{P}(\tilde{Y}_A > \tilde{Y}_B)$.
 
-For $n_0\in\{10, 1, 0.5, 0.25, 0.1, 0.01 \}$ we will obtain $\mathbb{P}(\theta_A > \theta_B|y_A,y_B)$ with $\theta_a \sim Gamma(120, 10)$  and $\theta_B \sim Gamma(12n0, n0)$. 
+For $n_0\in\{10, 1, 0.5, 0.25, 0.1, 0.01 \}$ we will obtain $\mathbb{P}(\theta_A > \theta_B\verty_A,y_B)$ with $\theta_a \sim Gamma(120, 10)$  and $\theta_B \sim Gamma(12n0, n0)$. 
 
 
 ```python
@@ -272,7 +272,7 @@ plt.show()
     
 
 
-From the plot above we see that $\mathbb{P}(\theta_A > \theta_B|y_A,y_B)$ decreases with bigger values of $n_0$, therefore the prior knowledge one has on the parameters changes the probability of the event but it seems to change little and the probability that the expected number of tumors for straain A is bigger than that of strain B is still high. Lets see if this is the case with the event $\{Y_A > Y_B\}$:
+From the plot above we see that $\mathbb{P}(\theta_A > \theta_B\verty_A,y_B)$ decreases with bigger values of $n_0$, therefore the prior knowledge one has on the parameters changes the probability of the event but it seems to change little and the probability that the expected number of tumors for straain A is bigger than that of strain B is still high. Lets see if this is the case with the event $\{Y_A > Y_B\}$:
 
 
 ```python
@@ -311,11 +311,11 @@ plt.show()
     
 
 
-it appears that the estimation of this probability is more sensitive to the change in the prior distribution on $\theta_B$, at least compared to the probability $\mathbb{P}(\theta_A >\theta_B | y_A, y_B)$.
+it appears that the estimation of this probability is more sensitive to the change in the prior distribution on $\theta_B$, at least compared to the probability $\mathbb{P}(\theta_A >\theta_B \vert y_A, y_B)$.
 
 <div style="color:blue;">  Assesing the choice of Poisson model</div>
 
-Finally, we will assess the model by means of a goodness of fit test. The procedure is the following: produce $N$ sets of samples of size $n_A = 10$ where the $i$-th sample set $\tilde{y}_A^{(i)}$ is drawn from $p(y|\theta_A)$ with $\theta_A$ sample from its posterior distribution $p(\theta_A | y_A)$. For each of this sample set of size $n_A$ we will compute the quantity $t(y_A)^{(i)}$ which is the ratio of the sample mean of $\tilde{y}_A^{(i)}$ to its sample standard deviation. Finally we will plot a histogram for the samples $t(y_A)^{(1)},\dots, t(y_A)^{(N)}$ 
+Finally, we will assess the model by means of a goodness of fit test. The procedure is the following: produce $N$ sets of samples of size $n_A = 10$ where the $i$-th sample set $\tilde{y}_A^{(i)}$ is drawn from $p(y\vert\theta_A)$ with $\theta_A$ sample from its posterior distribution $p(\theta_A \vert y_A)$. For each of this sample set of size $n_A$ we will compute the quantity $t(y_A)^{(i)}$ which is the ratio of the sample mean of $\tilde{y}_A^{(i)}$ to its sample standard deviation. Finally we will plot a histogram for the samples $t(y_A)^{(1)},\dots, t(y_A)^{(N)}$ 
 
 
 ```python
