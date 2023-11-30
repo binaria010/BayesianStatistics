@@ -43,7 +43,7 @@ The reason for these priors is the following. Remember that in a prior Gamma dis
   <li> $\alpha$ is interpretes as the sum of counts from $\beta$ prior observations. </li>
 </ul>
 
-thus as it is known that the mean is 12 and there are 10 mices of type A, a natural choice for the parameters is $\alpha_A = 120$ ,\beta_A = 10$. For $\theta_B$ since we have not much information only that the mice of type B is similar to $A$ then a natural choice is: $\alpha_B = 12$ and $\beta_B = 1$, also in this case the prior expected values for $\theta_A$ and $\theta_B$ are both 12.
+thus as it is known that the mean is 12 and there are 10 mices of type A, a natural choice for the parameters is $\alpha_A = 120$, $\beta_A = 10$. For $\theta_B$ since we have not much information only that the mice of type B is similar to $A$ then a natural choice is: $\alpha_B = 12$ and $\beta_B = 1$, also in this case the prior expected values for $\theta_A$ and $\theta_B$ are both 12.
 
 
 
