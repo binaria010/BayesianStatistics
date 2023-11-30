@@ -164,6 +164,6 @@ $$
 $$
 
 
-<a href="examples"> <h3> Worked Examples </h3> </a> 
+<a href="WorkedExamples"> <h3> Worked Examples </h3> </a> 
 
 </html>
