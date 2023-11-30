@@ -16,7 +16,7 @@
   </script>
   <meta name="google-site-verification" content="kuks5e4as6qBaGVCSzmHkQJa5Tss89_g5DmRXeUi7K8" />
 
-  <style> 
+ <!-- <style> 
   body{
     .previous {
     background-color: #f1f1f1;
@@ -30,7 +30,7 @@
        font-weight:bold; 
     }
   }
-  </style>
+  </style> -->
 </head>
 
 
