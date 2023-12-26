@@ -14,7 +14,8 @@
   </head>
 
 
-
+<a href="index" class="previous">&laquo; Previous</a>
+<a href="Metropolis-Hastings" class="next">Next &raquo;</a>
 
 <h1> Hypothesis Testing </h1>
 
