@@ -137,7 +137,7 @@ $$
 \end{align*}
 $$
 
-where $\bar{y}_n = \frac{\sum_{i=1}^n y_i}{n}$.
+where $\bar y_n = \frac{\sum_{i=1}^n y_i}{n}$.
 
 That is, the posterior expected value is a weighted average between the sample mean $\bar{y}_n$ and the prior expected value. Due to this weighted average, the quantity $\alpha_{prior}+\beta_{prior}$ is called sometimes the *effective size* while of course, $n$ is the sample size.
 
