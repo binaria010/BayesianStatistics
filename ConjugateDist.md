@@ -41,7 +41,7 @@ We already saw in the <a href="index">introduction </a> that if one has a random
 
 $$
 \begin{equation*}
-Y_i \vert  \theta \sim Ber(\theta)\quad \text{and} \quad \theta \sim \mathcal{U}(0,1) = Beta(1,1)
+Y_i \vert \theta \sim Ber(\theta)\quad \text{and} \quad \theta \sim \mathcal{U}(0,1) = Beta(1,1)
 \end{equation*}
 $$
 
@@ -127,7 +127,7 @@ $$
 $$
 
 
-For this posterior distribution we will have the posterior expected mean and posterior mode to be:
+For this posterior distribution we will have the posterior expected mean is:
 
 $$
 \begin{align*}
@@ -136,10 +136,17 @@ $$
 = & \frac{n}{\alpha_{prior} + \beta_{prior} + n}\bar{y}_n + \frac{\alpha_{prior} + \beta_{prior}}{\alpha_{prior} + \beta_{prior} + n}\frac{\alpha_{prior}}{\alpha_{prior} +\beta_{prior}}\\
 \end{align*}
 $$
+and the posterior mode is:
+$$
+mode = \frac{\alpha_{post} -1}{\alpha_{post} +\beta_{post}-2} = \frac{\alpha_{prior}+\sum_i y_i}{\alpha_{prior} +\beta_{prior} +n -2}.
+$$
 
-where $\overline y_n = \frac{\sum_{i=1}^n y_i}{n}$.
+where $\bar{y}_n = \frac{\sum_{i=1}^n y_i}{n}$. That is, the posterior expected value is a weighted average between the sample mean $\bar{y}_n$ and the prior expected value. Due to this weighted average, the quantity $\alpha_{prior}+\beta_{prior}$ is called sometimes the *effective size* while of course, $n$ is the sample size.
 
-That is, the posterior expected value is a weighted average between the sample mean $\overline y_n$ and the prior expected mean. Due to this weighted average, the quantity $\alpha_{prior}+\beta_{prior}$ is called sometimes the *effective size* while of course, $n$ is the sample size.
+Note that if $\alpha_{prior}=\beta_{prior} = 1$ then the posterior mode is $\bar{y}_n$, and this esimate was the one obtained (via the frquentist approach) previously in the survey example from the <a href="index">Introduction </a>. The posterior mode is called the *Maximum Aposteriori* estimation (MAP). This tells us that for Binomial data the maximum likelihood estimator and the maximum aposteiori estimator coincide.
+
+
+
 
 <h3> Prediction </h3>
 
@@ -196,11 +203,11 @@ for t in range(num_iter):
 
 ```python
 print(f"The posterior expectation of $\\theta$ is : {a_post/(a_post+b_post)}")
-print(f"the simulated $\mathbb P(Y_new = 1\vert y_1,\\dots, y_n) = $ {Y_new.mean()}")
+print(f"the simulated $\mathbb P(Y_new = 1|y_1,\\dots, y_n) = $ {Y_new.mean()}")
 ```
 
     The posterior expectation of $\theta$ is : 0.4019607843137255
-    the simulated $\mathbb P(Y_new = 1\vert y_1,\dots, y_n) = $ 0.3989
+    the simulated $\mathbb P(Y_new = 1|y_1,\dots, y_n) = $ 0.3989
 
 
 <h2> <a id = "poisson">Poisson Model </a></h2>
@@ -310,7 +317,7 @@ p(y\vert y_1,\dots y_n) =& \int_{0}^{\infty}p(y,\theta \vert y_1,\dots, y_n)\,d\
 $$
 </a>
 
-That is, $y \vert  y_1,\dots y_n\sim BN(\alpha_{post}, \beta_{post}/(\beta_{post} +1))$.
+That is, $y \vert y_1,\dots y_n\sim BN(\alpha_{post}, \beta_{post}/(\beta_{post} +1))$.
 
 
 Let's simulate some new data and plot its empirical distribution
@@ -369,7 +376,7 @@ plt.xlabel("$Y_{test}\vert \\theta $")  #+ f"$ \sim Pois({theta})$")
 
 plt.subplot(122)
 sns.histplot(Y_cond_theta_new, bins=100)
-plt.xlabel("$Y_{new}\vert \\theta$")  #\vert  \\theta_{post}$" + f"$\sim Pois({theta_post})$")
+plt.xlabel("$Y_{new}|\\theta$")  #| \\theta_{post}$" + f"$\sim Pois({theta_post})$")
 
 plt.show()
 ```
@@ -385,7 +392,7 @@ plt.show()
 plt.figure(figsize=(12,6))
 plt.subplot(121)
 sns.histplot(Y_cond_theta_new, bins = 100)
-plt.xlabel("$Y_{new}\vert \\theta$")  # \\sim + f"BN({a_prior, b_prior/(b_prior+1)})$")
+plt.xlabel("$Y_{new}|\\theta$")  # \\sim + f"BN({a_prior, b_prior/(b_prior+1)})$")
 
 plt.subplot(122)
 sns.histplot(Y_new, bins = 100)
@@ -494,5 +501,3 @@ where $p(y_i)= \frac{\Gamma(y_i + \alpha)}{\Gamma(y_i +1)\Gamma(\alpha)}\left(\f
 
 
 <a href="WorkedExamples"> <h3> Worked Examples </h3> </a> 
-
-
