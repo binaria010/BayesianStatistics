@@ -136,12 +136,14 @@ $$
 = & \frac{n}{\alpha_{prior} + \beta_{prior} + n}\bar{y}_n + \frac{\alpha_{prior} + \beta_{prior}}{\alpha_{prior} + \beta_{prior} + n}\frac{\alpha_{prior}}{\alpha_{prior} +\beta_{prior}}\\
 \end{align*}
 $$
+
 and the posterior mode is:
+
 $$
 mode = \frac{\alpha_{post} -1}{\alpha_{post} +\beta_{post}-2} = \frac{\alpha_{prior}+\sum_i y_i}{\alpha_{prior} +\beta_{prior} +n -2}.
 $$
 
-where $\bar{y}_n = \frac{\sum_{i=1}^n y_i}{n}$. That is, the posterior expected value is a weighted average between the sample mean $\bar{y}_n$ and the prior expected value. Due to this weighted average, the quantity $\alpha_{prior}+\beta_{prior}$ is called sometimes the *effective size* while of course, $n$ is the sample size.
+where $\bar y_n = \frac{\sum_{i=1}^n y_i}{n}$. That is, the posterior expected value is a weighted average between the sample mean $\bar y_n$ and the prior expected value. Due to this weighted average, the quantity $\alpha_{prior}+\beta_{prior}$ is called sometimes the *effective size* while of course, $n$ is the sample size.
 
 Note that if $\alpha_{prior}=\beta_{prior} = 1$ then the posterior mode is $\bar{y}_n$, and this esimate was the one obtained (via the frquentist approach) previously in the survey example from the <a href="index">Introduction </a>. The posterior mode is called the *Maximum Aposteriori* estimation (MAP). This tells us that for Binomial data the maximum likelihood estimator and the maximum aposteiori estimator coincide.
 
