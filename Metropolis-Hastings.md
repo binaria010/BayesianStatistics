@@ -22,7 +22,7 @@ These algorithms are a series of procedures that help us to draw samples from a 
 
 ## Problem: 
 
-Given a target distribution (density $p$) from which we one to draw samples and which we know up to a normilizing constant, we construct a Markov process whose distribution is $p$.
+Given a target distribution (density $p$) from which we want to draw samples and which we know up to a normilizing constant, we construct a Markov chain (process) whose stationary distribution is $p$.
 
 The core of these and other algorithms is the procedure to build the Markov chain.
 
