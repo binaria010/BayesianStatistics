@@ -55,7 +55,7 @@ The algorithm follows the steps:
 
     $$
     X_1 = \begin{cases}
-        & y \qquad \text{with probaility } \rho(x_0, y)\\
+        & y \qquad \text{with probaility } \rho(x_0, y) \\
         & x_0 \qquad \text{with probaility } 1 - \rho(x_0, y)
     \end{cases}
     $$
