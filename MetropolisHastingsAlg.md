@@ -64,7 +64,7 @@ The algorithm follows the steps:
 
 where 
     $$
-        \rho(x,y) = \min\left(\frac{g(y)}{g(x)}\frac{q(x|y)}{q(y|x)}, 1 \right) \qquad \text{and  } p\propto g
+        \rho(x,y) = \min\left(\frac{g(y)}{g(x)}\frac{q(x|y)}{q(y|x)}, 1 \right) \quad \text{and} \quad p\propto g
     $$
 
 Repetition of steps 2 and 3 will define a sequence of random variables $X_t$ such that $X_0 = x_0$ with probability 1. This sequence is a Markov process. The prove of this fact will be done later in this notebook.
