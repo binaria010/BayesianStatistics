@@ -14,20 +14,20 @@ The idea behind the MH algorithms is the following: Given the target density $p$
 The algorithm follows the steps:
 
 1. Initialize a value $x_0$
-2. Draw a random sample $x^ *$ from the distribution $q(y\left|x_0\right.)$ ($x^*$ is a candidate which we will accept or reject)
+2. Draw a random sample $y$ form the distribution $q(y | x_0)$ ($y$ is a candidate which we will accept or reject)
 3. Define
 
     $$
     X_1 = \begin{cases}
-        & x^* \qquad \text{with probaility } \rho(x_0, x^*)\\
-        & x_0 \qquad \text{with probaility } 1 - \rho(x_0, x^*)
+        & y \qquad \text{with probaility } \rho(x_0, y)\\
+        & x_0 \qquad \text{with probaility } 1 - \rho(x_0, y)
     \end{cases}
     $$
 4. Repeat steps 2 and 3 "sufficiently enough".
 
 where 
     $$
-        \rho(x,y) = \min\left\{\frac{g(y)}{g(x)}\frac{q(x|y)}{q(y|x)}, 1 \right\}, ~~ p\propto g
+        \rho(x,y) = \min\left\{\frac{g(y)}{g(x)}\frac{q(x|y)}{q(y|x)}, 1 \right\}, \quad p\propto g
     $$
 
 Repetition of steps 2 and 3 will define a sequence of random variables $X_t$ such that $X_0 = x_0$ with probability 1. This sequence is a Markov process. The prove of this fact will be done later in this notebook.
@@ -35,7 +35,7 @@ Repetition of steps 2 and 3 will define a sequence of random variables $X_t$ suc
 From now on we will denote $p \propto g$ for $p(x) = \frac{g(x)}{\int_{\mathbb R} g(y)dy}$. This implies that $\frac{p(x)}{p(y)} = \frac{g(x)}{g(y)}$.
 
 
-**Result** The importanceof this algorithm is the fact that the Markov process $(X_t)$ it produces has $p$ as its stationary distribution. That is, for large values of $t$, $X^t \sim p$.
+**Result** The importanceof this algorithm is the fact that the Markov process $(X_t)$ it produces has $p$ as its stationary distribution. That is, for large values of $t$, $X_t \sim p$.
 
 ## Implementing the MH algorithm
 
