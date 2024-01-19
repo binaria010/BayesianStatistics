@@ -33,7 +33,7 @@
    <li><a href="bayesianestimation"> Bayesian Estimation </a> </li>
     <li> Markov Chain Monte Carlo: Algorithms and Simulations</li>
         <ul>
-            <li><a href = "Metropolis-Hastings"> Metropolis Hastings Algorithm </a></li>
+            <li><a href = "MetropolisHastingsAlg"> Metropolis Hastings Algorithm </a></li>
          </ul>
  </ol>
 </nav>
