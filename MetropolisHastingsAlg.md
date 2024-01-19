@@ -1,4 +1,38 @@
+<head>
+  <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { tags: 'ams' } } }); </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        extensions: ["amsthm.js", "AMSmath.js","AMSsymbols.js", "autobold.js"],
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+         processEscapes: true
+      }
+    });
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+  </script>
+  <meta name="google-site-verification" content="kuks5e4as6qBaGVCSzmHkQJa5Tss89_g5DmRXeUi7K8" />
+
+  <style> 
+  body{
+    .previous {
+    background-color: #f1f1f1;
+    color: black;
+    }
+    .next {
+      background-color: #04AA6D;
+      color: white;
+    }
+    .example,.theorem,.lemma,.problem, .definition {
+       font-weight:bold; 
+    }
+  }
+  </style>
+</head>
+
 # Metropolis-Hastings (MH) algorithms
+
 
 These algorithms are a series of procedures that help us to draw samples from a target distributions which is known up to a normalizing constant. This type of problems present when dealing with *Bayesian inference*, where the posterior distribution is not fully known because the integration to compute the normalizing constant has to be solved numerically.
 
@@ -163,7 +197,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_10_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_11_0.png)
     
 
 
@@ -189,7 +223,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_12_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_13_0.png)
     
 
 
@@ -223,7 +257,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_15_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_16_0.png)
     
 
 
@@ -237,7 +271,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_16_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_17_0.png)
     
 
 
@@ -367,7 +401,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_23_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_24_0.png)
     
 
 
@@ -539,7 +573,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_30_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_31_0.png)
     
 
 
@@ -569,7 +603,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_33_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_34_0.png)
     
 
 
@@ -610,7 +644,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_36_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_37_0.png)
     
 
 
@@ -641,7 +675,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_38_1.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_39_1.png)
     
 
 
@@ -712,7 +746,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_46_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_47_0.png)
     
 
 
