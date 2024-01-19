@@ -14,7 +14,9 @@ The idea behind the MH algorithms is the following: Given the target density $p$
 The algorithm follows the steps:
 
 1. Initialize a value $x_0$
+
 2. Draw a random sample $y$ form the distribution $q(y | x_0)$ ($y$ is a candidate which we will accept or reject)
+
 3. Define
 
     $$
@@ -23,6 +25,7 @@ The algorithm follows the steps:
         & x_0 \qquad \text{with probaility } 1 - \rho(x_0, y)
     \end{cases}
     $$
+
 4. Repeat steps 2 and 3 "sufficiently enough".
 
 where 
