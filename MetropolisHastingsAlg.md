@@ -49,7 +49,7 @@ The algorithm follows the steps:
 
 1. Initialize a value $x_0$
 
-2. Draw a random sample $y$ form the distribution $q(y|x_0)$ ($y$ is a candidate which we will accept or reject)
+2. Draw a random sample $y$ form the distribution $q(y \vert x_0)$ ($y$ is a candidate which we will accept or reject)
 
 3. Define
 
@@ -64,7 +64,7 @@ The algorithm follows the steps:
 
 where 
     $$
-        \rho(x,y) = \min\left\(\frac{g(y)}{g(x)}\frac{q(x|y)}{q(y|x)}, 1 \right\), ~~ p\propto g
+        \rho(x,y) = \min\left\(\frac{g(y)}{g(x)}\frac{q(x|y)}{q(y|x)}, 1 \right\)
     $$
 
 Repetition of steps 2 and 3 will define a sequence of random variables $X_t$ such that $X_0 = x_0$ with probability 1. This sequence is a Markov process. The prove of this fact will be done later in this notebook.
