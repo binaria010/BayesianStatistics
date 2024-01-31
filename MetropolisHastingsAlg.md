@@ -31,6 +31,8 @@
   </style>
 </head>
 
+<a href="bayesianestimation" class="previous"> &laquo; Previous<a>   
+
 # Metropolis-Hastings (MH) algorithms
 
 
@@ -39,9 +41,9 @@ These algorithms are a series of procedures that help us to draw samples from a 
 
 ## Problem: 
 
-Given a target distribution (density $p$) from which we want to draw samples and which we know up to a normilizing constant, we construct a Markov chain whose stationary distribution is $p$.
+Given a target distribution (density $p$) from which we want to draw samples and which we know up to a normalizing constant, we construct a Markov chain whose stationary distribution is $p$.
 
-The core of these and other algorithms is the procedure to build the Markov chain.
+The core of these and other algorithms is the procedure to build the <a href= "https://en.wikipedia.org/wiki/Markov_chain">Markov chain</a>.
 
 The idea behind the MH algorithms is the following: Given the target density $p$ there is an associated conditional density $q$ which is easier to simulate. The MH algorithm for the target $p$ and conditional density $q$ produces a Markov chain $\{X_{t} \}$ whose, as we already mention,  stationary distribution is $p$.
 
@@ -49,13 +51,13 @@ The algorithm follows the steps:
 
 1. Initialize a value $x_0$
 
-2. Draw a random sample $y$ form the distribution $q(y \vert x_0)$ ($y$ is a candidate which we will accept or reject)
+2. Draw a random sample $y$ form the distribution $q(y | x_0)$ ($y$ is a candidate which we will accept or reject)
 
 3. Define
 
     $$
     X_1 = \begin{cases}
-        & y \qquad \text{with probaility } \rho(x_0, y) \\
+        & y \qquad \text{with probaility } \rho(x_0, y)\\
         & x_0 \qquad \text{with probaility } 1 - \rho(x_0, y)
     \end{cases}
     $$
@@ -64,10 +66,10 @@ The algorithm follows the steps:
 
 where 
     $$
-        \rho(x,y) = \min\left\lbrace\frac{g(y)}{g(x)}\frac{q(x|y)}{q(y|x)}, 1 \right\rbrace \quad \text{and} \quad p\propto g
+        \rho(x,y) = \min\left\lbrace\frac{g(y)}{g(x)}\frac{q(x|y)}{q(y|x)}, 1 \right\rbrace, \quad \text{and} \quad p\propto g
     $$
 
-Repetition of steps 2 and 3 will define a sequence of random variables $X_t$ such that $X_0 = x_0$ with probability 1. This sequence is a Markov process. The prove of this fact will be done later in this notebook.
+Repetition of steps 2 and 3 will define a sequence of random variables $X_t$ such that $X_0 = x_0$ with probability 1. This sequence is a Markov process. The proof of this fact will be done later in this notebook.
 
 From now on we will denote $p \propto g$ for $p(x) = \frac{g(x)}{\int_{\mathbb R} g(y)dy}$. This implies that $\frac{p(x)}{p(y)} = \frac{g(x)}{g(y)}$.
 
@@ -183,7 +185,7 @@ acceptance_ratio
 
 
 
-    0.471
+    0.434
 
 
 
@@ -197,7 +199,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_11_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_12_0.png)
     
 
 
@@ -223,7 +225,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_13_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_14_0.png)
     
 
 
@@ -257,7 +259,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_16_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_17_0.png)
     
 
 
@@ -271,7 +273,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_17_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_18_0.png)
     
 
 
@@ -336,33 +338,33 @@ df
     <tr>
       <th>0</th>
       <td>100</td>
-      <td>0.33018</td>
+      <td>0.280785</td>
       <td>0.3</td>
-      <td>0.028692</td>
+      <td>0.02413</td>
       <td>0.021</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1000</td>
-      <td>0.291244</td>
+      <td>0.290191</td>
       <td>0.3</td>
-      <td>0.019324</td>
+      <td>0.016769</td>
       <td>0.021</td>
     </tr>
     <tr>
       <th>2</th>
       <td>10000</td>
-      <td>0.301379</td>
+      <td>0.303457</td>
       <td>0.3</td>
-      <td>0.020117</td>
+      <td>0.021231</td>
       <td>0.021</td>
     </tr>
     <tr>
       <th>3</th>
       <td>100000</td>
-      <td>0.298979</td>
+      <td>0.299545</td>
       <td>0.3</td>
-      <td>0.021073</td>
+      <td>0.020842</td>
       <td>0.021</td>
     </tr>
   </tbody>
@@ -401,7 +403,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_24_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_25_0.png)
     
 
 
@@ -415,7 +417,7 @@ scipy.stats.kstest(X, scipy.stats.beta.cdf, (a, b))
 
 
 
-    KstestResult(statistic=0.03126582641560305, pvalue=0.2765260242534817, statistic_location=0.3033863188261565, statistic_sign=1)
+    KstestResult(statistic=0.016429314842480114, pvalue=0.9459293367566972)
 
 
 
@@ -428,7 +430,7 @@ scipy.stats.kstest(X, B)
 
 
 
-    KstestResult(statistic=0.043, pvalue=0.3136800387320582, statistic_location=0.3283607597347612, statistic_sign=1)
+    KstestResult(statistic=0.022, pvalue=0.9690010280430694)
 
 
 
@@ -472,7 +474,7 @@ $$
 \end{align*}
 $$
 
-where $t(0,1,1)$ is a t distribution with location parameter $a = 0$, scale parameter $\tau = 1$ and degrees of freedom $\nu =1$. See <a href = "https://en.wikipedia.org/wiki/Student%27s_t-distribution"> Wikipedia article </a> for more information on the t distribution.
+where $t(0,1,1)$ is a t distribution with location parameter $a = 0$, scale parameter $\tau = 1$ and degrees of freedom $\nu =1$. See the <a href = "https://en.wikipedia.org/wiki/Student%27s_t-distribution"> Wikipedia article </a> for more information on the t distribution.
 
 The posterior for this model is:
 
@@ -492,7 +494,7 @@ $$
 \rho(x, y) = \frac{g(y)}{g(x)}.
 $$
 
-This particular form of the alogrithm is called the Random Walk Metropolis Hastings.
+This particular form of the alogrithm is called the Random Walk Metropolis Hastings or simply the Metropolis Algorithm, see <a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm"> here </a> for the intuition and derivation.
 
 
 
@@ -573,12 +575,14 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_31_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_32_0.png)
     
 
 
 
 ```python
+np.random.seed(89)
+
 mu_init = 0.0
 n_iter = 1000
 sig_candidate = 2.0
@@ -588,6 +592,18 @@ posterior11, acceptance_ratio1 = Random_Walk_MH(mu_init, n, ybar, n_iter, log_g1
 posterior21, acceptance_ratio2 = Random_Walk_MH(mu_init, n, ybar, n_iter, log_g2,
                                               sig_candidate)
 ```
+
+
+```python
+arviz.ess(posterior11)
+```
+
+
+
+
+    78.73625373328707
+
+
 
 Lets make a traceplot for the samples:
 
@@ -603,7 +619,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_34_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_36_0.png)
     
 
 
@@ -612,7 +628,7 @@ plt.show()
 print(f"Estimated Posterior means are: {np.mean(posterior11)} {np.mean(posterior21)}")
 ```
 
-    Estimated Posterior means are: 0.8928566267385178 0.9093672169144001
+    Estimated Posterior means are: 0.9073951005020989 0.9091900499332689
 
 
 Lets plot the theoretical posterior density, which in this case is known, and the empiric distribution for the samples obtained with the algorithm:
@@ -633,7 +649,7 @@ griid = np.linspace(-2,4, 1000)
 
 plt.figure(figsize=(10, 5))
 sns.kdeplot(posterior11, label = "kernel density estimation form MCMC samples")
-plt.plot(ybar, 0 , "o", color = "red", label = "y_bar")
+plt.plot(ybar, 0 , "o", color = "red", label = "$\\bar{y}$")
 plt.plot(y, np.zeros(n), ".", label = 'data points', color = "green")
 plt.plot(griid, scipy.stats.norm.pdf(griid, loc = mu_post, scale = sigma_post), color = "purple", label = "posterior")
 plt.plot(griid, scipy.stats.norm.pdf(griid, loc = mu0, scale = tau0_sq),color = "magenta", label = "prior")
@@ -644,21 +660,105 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_37_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_39_0.png)
     
 
 
-What if we start very far form 0, that is, $\mu_{init}=30$
+Note that for the normal prior $\mathcal{N}(0, 1)$ the posterior mean is:
+
+
+
+```python
+mu_post
+```
+
+
+
+
+    0.8999999999999999
+
+
+
+meanwhile the estimated posterior mean using the MCMC samples is:
+
+
+
+```python
+np.mean(posterior11)
+```
+
+
+
+
+    0.9073951005020989
+
+
+
+Although the estimation for the mean is quite good, the estimated density (the blue curve in the plot above) does not seem to be very similar to the true psterior density. The reason for this is explained by the *effective sample size*. Although we draw 1000 samples with the MH algorithm, these samples are not independent, the are correlated. In fact, the sample auto-correlation for these are:
+
+
+```python
+fig = tsaplots.plot_acf(posterior11,title="Normal prior, mu_init =0")
+
+```
+
+
+    
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_45_0.png)
+    
+
+
+One way to assess the *goodness* of our estimator is to compute the *effective sample size* (*ess*) that will tell us how many independent samples would produce the estimator. That is, although we produce 1000 samples, the result of the estimator is as if we had *ess* numeber of independent samples. For instance, in this case the estimated *ess* is:
+
+
+```python
+arviz.ess(posterior11)
+```
+
+
+
+
+    78.73625373328707
+
+
+
+This means that the results we obtained with the MCMC samples are equivalent to the results we would obtained with 168 independent samples. The nearer to the number of samples the better are the MCMC samples. 
+We will return to this point when we talk about the standard error for the estimator of the mean using MCMC samples.
+
+For the t prior the correlation and the effective sample size are:
+
+
+```python
+fig = tsaplots.plot_acf(posterior21,title="t prior, mu_init =0")
+
+
+print(f"the estimated effective sample size is: {arviz.ess(posterior21)}")
+```
+
+    the estimated effective sample size is: 70.12735181805114
+
+
+
+    
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_50_1.png)
+    
+
+
+<h3> Dependance on initialization point. </h3>
+
+<p>
+What if we initialize $\mu$ very far form 0, e.g, $\mu_{init}=30$
+</p>
 
 
 ```python
 mu_init = 30.0
 n_iter = 1000
 sig_candidate = 2.0
-posterior12, acceptance_ratio1 = Random_Walk_MH(mu_init, n, ybar, n_iter, log_g1,
+posterior12, acceptance_ratio12 = Random_Walk_MH(mu_init, n, ybar, n_iter, log_g1,
                                               sig_candidate, mu0, tau0_sq)
 
-posterior22, acceptance_ratio2 = Random_Walk_MH(mu_init, n, ybar, n_iter, log_g2,
+posterior22, acceptance_ratio22 = Random_Walk_MH(mu_init, n, ybar, n_iter, log_g2,
                                               sig_candidate)
 
 plt.figure(figsize=(9,3))
@@ -669,13 +769,13 @@ plt.legend()
 plt.show()
 ```
 
-    /var/folders/_k/l4kdd2l942d2rkf41cjh5_1m0000gn/T/ipykernel_5971/3533057667.py:32: RuntimeWarning: overflow encountered in exp
+    /var/folders/_k/l4kdd2l942d2rkf41cjh5_1m0000gn/T/ipykernel_67980/3533057667.py:32: RuntimeWarning: overflow encountered in exp
       rho = np.exp(log_rho)   #acceptance ratio
 
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_39_1.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_52_1.png)
     
 
 
@@ -690,7 +790,7 @@ print(f"the estimated posterior mean for both priors are: {mu_keep1, mu_keep2}")
 
 ```
 
-    the estimated posterior mean for both priors are: (0.9013495007246863, 0.9142480507387665)
+    the estimated posterior mean for both priors are: (0.9355339352816968, 0.9120424653374526)
 
 
 Compare these estimated values with the one computed without discarding the first 100 samples:
@@ -704,7 +804,7 @@ mu_post2 = posterior22.mean()
 print(mu_post1, mu_post2)
 ```
 
-    1.5008917556855468 1.5519075907865219
+    1.4280440867890907 1.3716528388614584
 
 
 And also compare these values with the ones obtained using the samples with initial $\mu$ given by 0, a number closer to the sample mean of data $Y$. These values are: 
@@ -714,10 +814,10 @@ And also compare these values with the ones obtained using the samples with init
 print(f"Estimated Posterior means for mu_init = 0.0 are: {np.mean(posterior11)} {np.mean(posterior21)}")
 ```
 
-    Estimated Posterior means for mu_init = 0.0 are: 0.9213547095945693 0.9147392722559775
+    Estimated Posterior means for mu_init = 0.0 are: 0.9073951005020989 0.9091900499332689
 
 
-### What about the standard error for the estimator of the posterior mean?
+<h3> Standard error for the estimator of the posterior mean. </h3>
 
 If we were to estimate the mean of a distribution using iid samples $Y_1,\dots, Y_n ~Y$, we know that the standard error of the estimator is:
 $$
@@ -746,7 +846,7 @@ plt.show()
 
 
     
-![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_47_0.png)
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_60_0.png)
     
 
 
@@ -754,22 +854,151 @@ Note that for the samples generated with $\mu_{init}=30$ the correlation starts 
 
 Now that we saw that these are not independent sample, what is the standard error for this estimator?
 
+<h2>Using PyMC3 </h2>
+
+In this section we will reproduce the results obtained above by means of the Python library <strong><a href="https://www.pymc.io/welcome.html">PyMC3 </a> </strong>. 
+
+We tell the function *pymc3.sample* to run cores=3 independent Markov Chains. The plot of the posterior will consist then of thre curves, one for each sample set.
+
 
 ```python
+with pymc3.Model() as model_1:
+    mu_prior = pymc3.Normal('mu', mu = 0, sigma = 1)
+    y_data = pymc3.Normal('y', mu = mu_prior, sd = 1, observed = y) 
+    infered_data = pymc3.sample(draws = n_iter, cores = 3, return_inferencedata=True)
+```
+
+    Auto-assigning NUTS sampler...
+    Initializing NUTS using jitter+adapt_diag...
+    Multiprocess sampling (3 chains in 3 jobs)
+    NUTS: [mu]
+    WARNING (theano.link.c.cmodule): install mkl with `conda install mkl-service`: No module named 'mkl'
+    WARNING (theano.link.c.cmodule): install mkl with `conda install mkl-service`: No module named 'mkl'
+    WARNING (theano.link.c.cmodule): install mkl with `conda install mkl-service`: No module named 'mkl'
+
+
+
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+
+
+
+
+
+<div>
+  <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [6000/6000 00:01&lt;00:00 Sampling 3 chains, 0 divergences]
+</div>
+
+
+
+    /Users/juliana/opt/anaconda3/envs/Gatulin/lib/python3.10/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+      return _boost._beta_ppf(q, a, b)
+    /Users/juliana/opt/anaconda3/envs/Gatulin/lib/python3.10/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+      return _boost._beta_ppf(q, a, b)
+    /Users/juliana/opt/anaconda3/envs/Gatulin/lib/python3.10/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+      return _boost._beta_ppf(q, a, b)
+    Sampling 3 chains for 1_000 tune and 1_000 draw iterations (3_000 + 3_000 draws total) took 11 seconds.
+
+
+To make some diagnosis of the samples draw with pymc3 we will use the python library <a href = "https://python.arviz.org/en/stable/index.html">ArviZ</a> a module for exploratory analysis of Bayesian models.
+
+
+```python
+arviz.plot_trace(infered_data, var_names='mu', compact= False)
+plt.show()
 
 ```
 
 
+    
+![png](MetropolisHastingsAlg_files/MetropolisHastingsAlg_66_0.png)
+    
+
+
+The plot on the left contains the *Kernel Density Estimation* (kde) for the posterior of the 3 sets of samples. The plot on the right is the value of the samples for each chain.
+
+We can use the function *summary* from *arviz* library to see the details of the posterior. It returns a pandas data frame with a bunch of statistics usefull for the diagnosis of the chain computed. 
+
+The data returned is: the posterior mean and standard deviation, a 95% high density interval (hdi, which is the smallest interval containing the 95%  of the probability density or the minimum width Bayesian Credible Interval), the msce_mean and mcse_sd (the standard error for the estimators of the mean and standard deviation), the effective sample size using two methods: bulk and tail (these are ess_bulk and ess_tail of which we will not discuss any further). 
+
+And finally the r_hat statistic which is the ratio of estimated variability whithin chains by the estimated variability between chains. If we arrived at stationarity this number should be very near to 1, meaning that: if all chains have converged to the stationary distribution, the variability between chains should be relatively small, and the potential scale reduction factor r_hat. If the values are much higher than one, then we would conclude that the chains have not yet converged.
+
+Documentation for the r_hat can be found <a href="https://python.arviz.org/en/stable/api/generated/arviz.rhat.html#arviz.rhat"> here </a> and also the reference for it can be found <a href="https://arxiv.org/abs/1903.08008"> here </a>.
+
+
+
 ```python
-arviz.ess(posterior2)
+df = arviz.summary(infered_data, hdi_prob=0.95)
+df
 ```
 
 
 
 
-    61.711390756531806
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean</th>
+      <th>sd</th>
+      <th>hdi_2.5%</th>
+      <th>hdi_97.5%</th>
+      <th>mcse_mean</th>
+      <th>mcse_sd</th>
+      <th>ess_bulk</th>
+      <th>ess_tail</th>
+      <th>r_hat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>mu</th>
+      <td>0.893</td>
+      <td>0.308</td>
+      <td>0.291</td>
+      <td>1.479</td>
+      <td>0.009</td>
+      <td>0.006</td>
+      <td>1298.0</td>
+      <td>1806.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
+
+Go to the Section <a href="IntrotoPyMC3">A Quick Intro to PyMC3</a> for a tutorial for begginers in PyMC3.
 
 
 ```python
