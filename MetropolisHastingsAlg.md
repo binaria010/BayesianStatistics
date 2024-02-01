@@ -51,7 +51,7 @@ The algorithm follows the steps:
 
 1. Initialize a value $x_0$
 
-2. Draw a random sample $y$ form the distribution $q(y | x_0)$ ($y$ is a candidate which we will accept or reject)
+2. Draw a random sample $y$ form the distribution $q(y|x_0)$ ($y$ is a candidate which we will accept or reject)
 
 3. Define
 
