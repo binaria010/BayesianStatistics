@@ -263,8 +263,14 @@ mu_samples.shape
 
 Now, with the posterior samples obtained via the MCMC we can simulate new data and check how consistent this simulated data is with respect to the observed data. This is a kind of diagnosis of the model since we are going to use these posterior samples to make some predictions and use them to check the model.
 
-With the function *sample_posterior_predictive* we generate of samples of the variable $Y$ each of these set with the size of the original data:
+Recall that the posterior predictive distribution is
 
+$$
+p(y_{new}\vert y) =\int_{\theta\in\Theta} p(y_{new}\vert \theta)p(\theta\vert y)\,d\theta
+$$
+that is, it is an average of conditional predictions over the $\theta$ parameter.
+
+With the function *sample_posterior_predictive* we generate of sets samples of the variable $Y_{new}$ each of these set with the size of the original data:
 
 ```python
 y_pred_model0 = pymc3.sample_posterior_predictive(trace = infered_data, model=model_0, keep_size=True)
