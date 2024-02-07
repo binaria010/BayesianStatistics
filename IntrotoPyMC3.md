@@ -33,7 +33,7 @@
 
 <a href="MetropolisHastingsAlg" class="previous"> &laquo; Back<a>  <a href="index" class="next"> &raquo; Table of Contents<a> 
 
-<h1>A Quick Intro to PyMC3 </h1>
+<h1>A Quick Intro to PyMC3 and ArviZ libraries</h1>
 
 
 ```python
@@ -49,14 +49,11 @@ warnings.filterwarnings('ignore')
 warnings.simplefilter('ignore')
 ```
 
-    WARNING (theano.link.c.cmodule): install mkl with `conda install mkl-service`: No module named 'mkl'
-
-
-The following data is 
+The following data consists of the weight in pounds of 48 specimens of penguins from Antartica. The goal is to make some bayesian inference on the mean and variance of the weight.
 
 
 ```python
-file_name = 'data/chemical_shifts.csv'
+file_name = 'data/weights.csv'
 
 data = np.loadtxt(file_name)
 data[0:5]
@@ -128,53 +125,6 @@ with pymc3.Model() as model_0:
     y_likelihood = pymc3.Normal('y', mu = mu_prior, sd = sigma_prior, observed = data)
     infered_data = pymc3.sample(draws=1000, chains = 3, return_inferencedata=True)
 ```
-
-    Auto-assigning NUTS sampler...
-    Initializing NUTS using jitter+adapt_diag...
-    Multiprocess sampling (3 chains in 4 jobs)
-    NUTS: [$\sigma$, $\mu$]
-    WARNING (theano.link.c.cmodule): install mkl with `conda install mkl-service`: No module named 'mkl'
-    WARNING (theano.link.c.cmodule): install mkl with `conda install mkl-service`: No module named 'mkl'
-    WARNING (theano.link.c.cmodule): install mkl with `conda install mkl-service`: No module named 'mkl'
-
-
-
-
-<style>
-    /* Turns off some styling */
-    progress {
-        /* gets rid of default border in Firefox and Opera. */
-        border: none;
-        /* Needs to be in here for Safari polyfill so background images work as expected. */
-        background-size: auto;
-    }
-    progress:not([value]), progress:not([value])::-webkit-progress-bar {
-        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
-    }
-    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
-        background: #F44336;
-    }
-</style>
-
-
-
-
-
-<div>
-  <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:01&lt;00:00 Sampling 3 chains, 0 divergences]
-</div>
-
-
-
-    /Users/juliana/opt/anaconda3/envs/Gatulin/lib/python3.10/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
-      return _boost._beta_ppf(q, a, b)
-    /Users/juliana/opt/anaconda3/envs/Gatulin/lib/python3.10/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
-      return _boost._beta_ppf(q, a, b)
-    /Users/juliana/opt/anaconda3/envs/Gatulin/lib/python3.10/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
-      return _boost._beta_ppf(q, a, b)
-    Sampling 3 chains for 1_000 tune and 1_000 draw iterations (3_000 + 3_000 draws total) took 9 seconds.
-
 
 
 ```python
@@ -271,6 +221,7 @@ $$
 that is, it is an average of conditional predictions over the $\theta$ parameter.
 
 With the function *sample_posterior_predictive* we generate of sets samples of the variable $Y_{new}$ each of these set with the size of the original data:
+
 
 ```python
 y_pred_model0 = pymc3.sample_posterior_predictive(trace = infered_data, model=model_0, keep_size=True)
@@ -436,11 +387,12 @@ plt.show()
 ```python
 
 
-_, ax = plt.subplots(1, 2, sharex=True, sharey=True, figsize=(12, 4))
-ax0 = arviz.plot_ppc(data=ppc_data,num_pp_samples= 30, data_pairs={"y":"y"}, color='purple', random_seed= 33, ax = ax[0])
-ax1 = arviz.plot_ppc(data=ppc_data_reduced,num_pp_samples= 30, data_pairs={"y":"y"}, color='purple', random_seed= 33, ax=ax[1])
+_, ax = plt.subplots(1, 2, sharex=True, sharey=True , figsize=(12, 4))
+arviz.plot_ppc(data=ppc_data,num_pp_samples= 50, data_pairs={"y":"y"}, color='purple', random_seed= 33, ax = ax[0])
+arviz.plot_ppc(data=ppc_data_reduced,num_pp_samples= 50, data_pairs={"y":"y"}, color='purple', random_seed= 33, ax=ax[1])
 ax[0].set_title("PPC for Complete data")
 ax[1].set_title("PPC for data without outliers")
+ax[1].legend().set_visible(False)
 plt.show()
 ```
 
@@ -449,3 +401,262 @@ plt.show()
 ![png](IntrotoPyMC3_files/IntrotoPyMC3_41_0.png)
     
 
+
+<h2> Changing the likelihood </h2>
+
+The plot comparisson above shows us that by dropping out the "outliers" doesn't seem to improve the model. We could try another approach. We can keep those two data points and consider as a model for the data a distribution with heavier tails, for instance a T students distribution. The problem with the normal model is that due to the presence of these two outliers, it tends to move to the right.
+
+Let us now consider a new model with likelihood given by a T-distribution:
+
+$$
+\begin{align*}
+\mu &\sim \mathcal{U}(a, b)\\
+\sigma &\sim \vert \mathcal{N}(0, \sigma_0^2)\vert \\
+\nu &\sim \mathcal{E}(\lambda)\\
+y &\sim \mathcal{T}(\mu, \sigma, \nu)
+\end{align*}
+$$
+
+Because the T distribution has 3 parameters: the mean, the scale and the degrees of freedom $\nu$, we need to especify also a prior for $\nu$.
+
+As before, take $a = \min(data), b = \max(data)$ and $\sigma_0 = 50$, for this latter parameter we can set any ad-hoc value since we have no prior knowledge on the variance and since a T distribution with big degree of freedom is pretty similar to a Gaussia then consider the mean of the prior for $\nu$ to be a relatively big number, let's say $1/\lambda = 20$.
+
+
+
+
+```python
+a = np.min(data)
+b = np.max(data)
+sigma_0 = 10
+lambd = 1/30
+
+with pymc3.Model() as model_T:
+    mu = pymc3.Uniform('$\mu$', lower = a, upper = b)
+    sigma = pymc3.HalfNormal('$\sigma$', sd = sigma_0)
+    nu = pymc3.Exponential('$\\nu$', lam = lambd)
+    y = pymc3.StudentT('y', mu = mu, sd = sigma, nu= nu, observed = data)
+    trace = pymc3.sample(draws = 1000, chains = 2, return_inferencedata=True)
+
+```
+
+
+```python
+arviz.plot_trace(data = trace, compact=False, figsize = (12, 10))
+plt.show()
+
+```
+
+
+    
+![png](IntrotoPyMC3_files/IntrotoPyMC3_44_0.png)
+    
+
+
+Let's compare the summary for both models:
+
+
+```python
+arviz.summary(trace)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean</th>
+      <th>sd</th>
+      <th>hdi_3%</th>
+      <th>hdi_97%</th>
+      <th>mcse_mean</th>
+      <th>mcse_sd</th>
+      <th>ess_bulk</th>
+      <th>ess_tail</th>
+      <th>r_hat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>$\mu$</th>
+      <td>53.033</td>
+      <td>0.388</td>
+      <td>52.301</td>
+      <td>53.743</td>
+      <td>0.011</td>
+      <td>0.008</td>
+      <td>1185.0</td>
+      <td>1156.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>$\sigma$</th>
+      <td>2.184</td>
+      <td>0.419</td>
+      <td>1.390</td>
+      <td>2.942</td>
+      <td>0.017</td>
+      <td>0.012</td>
+      <td>624.0</td>
+      <td>859.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>$\nu$</th>
+      <td>4.764</td>
+      <td>5.111</td>
+      <td>0.933</td>
+      <td>9.926</td>
+      <td>0.204</td>
+      <td>0.145</td>
+      <td>826.0</td>
+      <td>752.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+arviz.summary(infered_data)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean</th>
+      <th>sd</th>
+      <th>hdi_3%</th>
+      <th>hdi_97%</th>
+      <th>mcse_mean</th>
+      <th>mcse_sd</th>
+      <th>ess_bulk</th>
+      <th>ess_tail</th>
+      <th>r_hat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>$\mu$</th>
+      <td>53.498</td>
+      <td>0.504</td>
+      <td>52.494</td>
+      <td>54.404</td>
+      <td>0.010</td>
+      <td>0.007</td>
+      <td>2439.0</td>
+      <td>1963.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>$\sigma$</th>
+      <td>3.540</td>
+      <td>0.379</td>
+      <td>2.825</td>
+      <td>4.197</td>
+      <td>0.008</td>
+      <td>0.006</td>
+      <td>2077.0</td>
+      <td>2037.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Now, let's make the posterior predictive check of the T-model:
+
+
+```python
+y_ppc_T = pymc3.sample_posterior_predictive(trace = trace, model=model_T, random_seed=123, keep_size=True)
+data_ppc_T = arviz.concat(trace, arviz.from_dict(posterior_predictive=y_ppc_T), inplace=False)
+
+```
+
+
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+
+
+
+
+
+<div>
+  <progress value='2000' class='' max='2000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [2000/2000 00:01&lt;00:00]
+</div>
+
+
+
+
+```python
+arviz.plot_ppc(data_ppc_T, num_pp_samples= 50, random_seed=40)
+plt.xlim((40, 70))
+plt.show()
+```
+
+
+    
+![png](IntrotoPyMC3_files/IntrotoPyMC3_50_0.png)
+    
+
+
+In terms of the location of the mean the T model seems to be better than the Gaussian, also in terms of the spread.
+
+<br>
+<br>
+<br>
+
+<a href="MetropolisHastingsAlg" class="previous"> &laquo; Back<a>  <a href="index" class="next"> &raquo; Table of Contents<a> 
