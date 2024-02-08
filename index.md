@@ -34,6 +34,9 @@
     <li> Markov Chain Monte Carlo: Algorithms and Simulations</li>
         <ul>
             <li><a href = "MetropolisHastingsAlg"> Metropolis Hastings Algorithm </a></li>
+                  <ul>
+                    <li> <a href = "IntrotoPyMC3"> A Quick Intro to PyMC3 and ArviZ libraires </a></li>
+                  </ul>
          </ul>
  </ol>
 </nav>
