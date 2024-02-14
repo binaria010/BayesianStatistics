@@ -31,7 +31,7 @@
   </style>
 </head>
 
-<a href="MetropolisHastingsAlg" class="previous"> &laquo; Back<a>  <a href="index" class="next"> &raquo; Table of Contents<a> 
+<a href="MetropolisHastingsAlg" class="previous"> &laquo; Back</a>  <a href="index" class="next"> &raquo; Table of Contents</a> 
 
 <h1>A Quick Intro to PyMC3 and ArviZ libraries</h1>
 
