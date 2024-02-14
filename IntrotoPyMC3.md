@@ -659,4 +659,4 @@ In terms of the location of the mean the T model seems to be better than the Gau
 <br>
 <br>
 
-<a href="MetropolisHastingsAlg" class="previous"> &laquo; Back<a>  <a href="index" class="next"> &raquo; Table of Contents<a> 
+<a href="MetropolisHastingsAlg" class="previous"> &laquo; Back</a>  <a href="index" class="next"> &raquo; Table of Contents</a> 
