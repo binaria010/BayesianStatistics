@@ -31,7 +31,7 @@
   </style>
 </head>
 
-<a href="MetropolisHastingsAlg" class="previous"> &laquo; Previous<a>  <a href="index" class="next"> &raquo; Table of Contents<a> 
+<a href="MetropolisHastingsAlg" class="previous"> &laquo; Previous</a>  <a href="index" class="next"> &raquo; Table of Contents</a> 
 
 # Metropolis-Hastings (MH) algorithms
 
