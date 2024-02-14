@@ -1035,4 +1035,4 @@ arviz.summary(infered_data, hdi_prob=0.95)
 
 Go to the Section <a href="IntrotoPyMC3">A Quick Intro to PyMC3</a> for a tutorial for begginers in PyMC3.
 
-<a href="MetropolisHastingsAlg" class="previous"> &laquo; Back<a>  <a href="index" class="next"> &raquo; Table of Contents<a> 
+<a href="MetropolisHastingsAlg" class="previous"> &laquo; Back</a>  <a href="index" class="next"> &raquo; Table of Contents</a> 
